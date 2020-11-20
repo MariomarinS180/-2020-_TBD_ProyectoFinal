@@ -1,7 +1,7 @@
-package proyectofinal_abcc;
+package conexionPostgreSQL;
 
 import java.sql.*;
-public class ProyectoFinal_ABCC {
+public class Conexion {
 
     
     public static void main(String[] args) {
