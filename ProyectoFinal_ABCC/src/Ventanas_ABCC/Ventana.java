@@ -37,7 +37,7 @@ public class Ventana extends javax.swing.JFrame {
         cajaAutor = new javax.swing.JTextField();
         txtGenero = new javax.swing.JLabel();
         comboBoxGenero = new javax.swing.JComboBox<>();
-        txtPaisAutor = new javax.swing.JLabel();
+        txtIDLibro = new javax.swing.JLabel();
         cajaPaisAutor = new javax.swing.JTextField();
         txtNumeroDePaginas = new javax.swing.JLabel();
         cajaNumPaginas = new javax.swing.JTextField();
@@ -50,34 +50,56 @@ public class Ventana extends javax.swing.JFrame {
         botonRegistrar = new javax.swing.JButton();
         botonModificar = new javax.swing.JButton();
         botonEliminar1 = new javax.swing.JButton();
+        txtPaisAutor1 = new javax.swing.JLabel();
+        cajaIDLibro = new javax.swing.JTextField();
+        botonEliminar2 = new javax.swing.JButton();
+        labelBanner = new javax.swing.JLabel();
+        labelFondoGris = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtNombre.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
         txtNombre.setText("Ingrese el Nombre del Libro");
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
         cajaNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cajaNombreActionPerformed(evt);
             }
         });
+        jPanel1.add(cajaNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 160, -1));
 
+        txtEditorial.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
+        txtEditorial.setForeground(new java.awt.Color(255, 255, 255));
         txtEditorial.setText("Ingrese la Editorial");
+        jPanel1.add(txtEditorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, -1));
 
         cajaEditoral.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cajaEditoralActionPerformed(evt);
             }
         });
+        jPanel1.add(cajaEditoral, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 160, -1));
 
+        txtAutor.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
+        txtAutor.setForeground(new java.awt.Color(255, 255, 255));
         txtAutor.setText("Ingrese el Autor");
+        jPanel1.add(txtAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, -1));
 
         cajaAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cajaAutorActionPerformed(evt);
             }
         });
+        jPanel1.add(cajaAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 151, 30));
 
+        txtGenero.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
+        txtGenero.setForeground(new java.awt.Color(255, 255, 255));
         txtGenero.setText("Ingrese el Género");
+        jPanel1.add(txtGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 110, 20));
 
         comboBoxGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un género", "Terror", "Fantasía", "Locura" }));
         comboBoxGenero.addActionListener(new java.awt.event.ActionListener() {
@@ -85,40 +107,60 @@ public class Ventana extends javax.swing.JFrame {
                 comboBoxGeneroActionPerformed(evt);
             }
         });
+        jPanel1.add(comboBoxGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 170, -1));
 
-        txtPaisAutor.setText("País del Autor");
+        txtIDLibro.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
+        txtIDLibro.setForeground(new java.awt.Color(255, 255, 255));
+        txtIDLibro.setText("ID del Libro:");
+        jPanel1.add(txtIDLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, -1, -1));
 
         cajaPaisAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cajaPaisAutorActionPerformed(evt);
             }
         });
+        jPanel1.add(cajaPaisAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 130, 30));
 
+        txtNumeroDePaginas.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
+        txtNumeroDePaginas.setForeground(new java.awt.Color(255, 255, 255));
         txtNumeroDePaginas.setText("Número de Páginas");
+        jPanel1.add(txtNumeroDePaginas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
 
         cajaNumPaginas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cajaNumPaginasActionPerformed(evt);
             }
         });
+        jPanel1.add(cajaNumPaginas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 160, 30));
 
+        txtAnioEdicion.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
+        txtAnioEdicion.setForeground(new java.awt.Color(255, 255, 255));
         txtAnioEdicion.setText("Año de Edición");
+        jPanel1.add(txtAnioEdicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, -1, -1));
 
         cajaAnioEdicion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cajaAnioEdicionActionPerformed(evt);
             }
         });
+        jPanel1.add(cajaAnioEdicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 150, 30));
 
+        txtPrecio.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
+        txtPrecio.setForeground(new java.awt.Color(255, 255, 255));
         txtPrecio.setText("Precio");
+        jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, -1, 10));
 
         cajaPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cajaPrecioActionPerformed(evt);
             }
         });
+        jPanel1.add(cajaPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, 130, 30));
 
+        txtRegistrador.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
+        txtRegistrador.setForeground(new java.awt.Color(255, 255, 255));
         txtRegistrador.setText("¿Quién es el trabajador?");
+        jPanel1.add(txtRegistrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, 20));
 
         comboBoxRegistrador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un trabajador...", "Mario Marín Ramírez", "Felpe De Jesús M. Olague", "Miguel A. Bazan Garduño", "Osvaldo A. de la Torre Ortiz" }));
         comboBoxRegistrador.addActionListener(new java.awt.event.ActionListener() {
@@ -126,184 +168,131 @@ public class Ventana extends javax.swing.JFrame {
                 comboBoxRegistradorActionPerformed(evt);
             }
         });
+        jPanel1.add(comboBoxRegistrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 180, 20));
 
         botonRegistrar.setBackground(new java.awt.Color(0, 204, 0));
-        botonRegistrar.setText("Registrar");
+        botonRegistrar.setFont(new java.awt.Font("Impact", 0, 14)); // NOI18N
+        botonRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/registrar.png"))); // NOI18N
+        botonRegistrar.setText("REGISTRAR");
+        jPanel1.add(botonRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, -1, 30));
 
         botonModificar.setBackground(new java.awt.Color(255, 255, 0));
-        botonModificar.setText("Modificar");
+        botonModificar.setFont(new java.awt.Font("Impact", 0, 14)); // NOI18N
+        botonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/update.png"))); // NOI18N
+        botonModificar.setText("MODIFICAR");
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 410, 120, 30));
 
-        botonEliminar1.setBackground(new java.awt.Color(255, 0, 0));
-        botonEliminar1.setText("Eliminar");
+        botonEliminar1.setBackground(new java.awt.Color(51, 51, 255));
+        botonEliminar1.setFont(new java.awt.Font("Impact", 0, 14)); // NOI18N
+        botonEliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/restablecer.png"))); // NOI18N
+        botonEliminar1.setText("RESTABLECER COMPONENTES");
+        botonEliminar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 220, 30));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cajaNombre)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(63, 63, 63)
-                                        .addComponent(txtEditorial)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtGenero)
-                                        .addGap(20, 20, 20))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(39, 39, 39)
-                                        .addComponent(cajaEditoral, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(comboBoxGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(txtNumeroDePaginas)
-                                .addGap(99, 99, 99)
-                                .addComponent(txtAnioEdicion)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtPrecio)
-                                .addGap(53, 53, 53)))
-                        .addGap(55, 55, 55))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cajaPaisAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cajaNumPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(49, 49, 49)
-                        .addComponent(cajaAnioEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(cajaPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(55, 55, 55))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(cajaAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(44, 44, 44))))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(txtAutor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtPaisAutor)
-                .addGap(87, 87, 87))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(138, 138, 138)
-                        .addComponent(txtRegistrador))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(botonRegistrar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(comboBoxRegistrador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(botonEliminar1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonModificar)
-                        .addGap(67, 67, 67))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNombre)
-                            .addComponent(txtEditorial)
-                            .addComponent(txtGenero))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cajaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cajaEditoral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboBoxGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(57, 57, 57)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNumeroDePaginas)
-                            .addComponent(txtAnioEdicion)
-                            .addComponent(txtPrecio))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cajaNumPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cajaAnioEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cajaPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22)
-                        .addComponent(txtPaisAutor))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtAutor)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cajaAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cajaPaisAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxRegistrador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtRegistrador))
-                .addGap(37, 37, 37)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonRegistrar)
-                    .addComponent(botonModificar)
-                    .addComponent(botonEliminar1))
-                .addContainerGap(54, Short.MAX_VALUE))
-        );
+        txtPaisAutor1.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
+        txtPaisAutor1.setForeground(new java.awt.Color(255, 255, 255));
+        txtPaisAutor1.setText("País del Autor");
+        jPanel1.add(txtPaisAutor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, -1));
+
+        cajaIDLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cajaIDLibroActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cajaIDLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, 130, 30));
+
+        botonEliminar2.setBackground(new java.awt.Color(204, 0, 0));
+        botonEliminar2.setFont(new java.awt.Font("Impact", 0, 14)); // NOI18N
+        botonEliminar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/delete.png"))); // NOI18N
+        botonEliminar2.setText("ELIMINAR");
+        botonEliminar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminar2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonEliminar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, 120, 30));
+
+        labelBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Centro de registro.jpg"))); // NOI18N
+        jPanel1.add(labelBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        labelFondoGris.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
+        labelFondoGris.setText("jLabel1");
+        jPanel1.add(labelFondoGris, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 580, 620));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 575, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cajaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaNombreActionPerformed
+    private void comboBoxRegistradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxRegistradorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cajaNombreActionPerformed
-
-    private void cajaEditoralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaEditoralActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cajaEditoralActionPerformed
-
-    private void cajaAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaAutorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cajaAutorActionPerformed
-
-    private void comboBoxGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxGeneroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxGeneroActionPerformed
-
-    private void cajaPaisAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaPaisAutorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cajaPaisAutorActionPerformed
-
-    private void cajaNumPaginasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaNumPaginasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cajaNumPaginasActionPerformed
-
-    private void cajaAnioEdicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaAnioEdicionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cajaAnioEdicionActionPerformed
+    }//GEN-LAST:event_comboBoxRegistradorActionPerformed
 
     private void cajaPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaPrecioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cajaPrecioActionPerformed
 
-    private void comboBoxRegistradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxRegistradorActionPerformed
+    private void cajaAnioEdicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaAnioEdicionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxRegistradorActionPerformed
+    }//GEN-LAST:event_cajaAnioEdicionActionPerformed
+
+    private void cajaNumPaginasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaNumPaginasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaNumPaginasActionPerformed
+
+    private void cajaPaisAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaPaisAutorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaPaisAutorActionPerformed
+
+    private void comboBoxGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxGeneroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxGeneroActionPerformed
+
+    private void cajaAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaAutorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaAutorActionPerformed
+
+    private void cajaEditoralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaEditoralActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaEditoralActionPerformed
+
+    private void cajaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaNombreActionPerformed
+
+    private void cajaIDLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaIDLibroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaIDLibroActionPerformed
+
+    private void botonEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonEliminar1ActionPerformed
+
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonModificarActionPerformed
+
+    private void botonEliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonEliminar2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -342,11 +331,13 @@ public class Ventana extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonEliminar1;
+    private javax.swing.JButton botonEliminar2;
     private javax.swing.JButton botonModificar;
     private javax.swing.JButton botonRegistrar;
     private javax.swing.JTextField cajaAnioEdicion;
     private javax.swing.JTextField cajaAutor;
     private javax.swing.JTextField cajaEditoral;
+    private javax.swing.JTextField cajaIDLibro;
     private javax.swing.JTextField cajaNombre;
     private javax.swing.JTextField cajaNumPaginas;
     private javax.swing.JTextField cajaPaisAutor;
@@ -354,13 +345,16 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxGenero;
     private javax.swing.JComboBox<String> comboBoxRegistrador;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelBanner;
+    private javax.swing.JLabel labelFondoGris;
     private javax.swing.JLabel txtAnioEdicion;
     private javax.swing.JLabel txtAutor;
     private javax.swing.JLabel txtEditorial;
     private javax.swing.JLabel txtGenero;
+    private javax.swing.JLabel txtIDLibro;
     private javax.swing.JLabel txtNombre;
     private javax.swing.JLabel txtNumeroDePaginas;
-    private javax.swing.JLabel txtPaisAutor;
+    private javax.swing.JLabel txtPaisAutor1;
     private javax.swing.JLabel txtPrecio;
     private javax.swing.JLabel txtRegistrador;
     // End of variables declaration//GEN-END:variables
