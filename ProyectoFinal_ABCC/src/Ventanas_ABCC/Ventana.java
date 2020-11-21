@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Ventanas_ABCC;
-
+import javax.swing.*;
 /**
  *
  * @author marin
@@ -70,6 +70,11 @@ public class Ventana extends javax.swing.JFrame {
                 cajaNombreActionPerformed(evt);
             }
         });
+        cajaNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cajaNombreKeyTyped(evt);
+            }
+        });
         jPanel1.add(cajaNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 160, -1));
 
         txtEditorial.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
@@ -80,6 +85,11 @@ public class Ventana extends javax.swing.JFrame {
         cajaEditoral.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cajaEditoralActionPerformed(evt);
+            }
+        });
+        cajaEditoral.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cajaEditoralKeyTyped(evt);
             }
         });
         jPanel1.add(cajaEditoral, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 160, -1));
@@ -129,6 +139,11 @@ public class Ventana extends javax.swing.JFrame {
         cajaNumPaginas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cajaNumPaginasActionPerformed(evt);
+            }
+        });
+        cajaNumPaginas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cajaNumPaginasKeyTyped(evt);
             }
         });
         jPanel1.add(cajaNumPaginas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 160, 30));
@@ -293,6 +308,33 @@ public class Ventana extends javax.swing.JFrame {
     private void botonEliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminar2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonEliminar2ActionPerformed
+
+    private void cajaEditoralKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaEditoralKeyTyped
+        // Validacion de la caja editorial (primera caja) 
+        char validacion = evt.getKeyChar(); 
+        if(Character.isDigit(validacion)){
+            //getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_cajaEditoralKeyTyped
+
+    private void cajaNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNombreKeyTyped
+         // Validacion de la caja nombre (segunda caja) 
+        char validacion = evt.getKeyChar(); 
+        if(Character.isDigit(validacion)){
+            //getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_cajaNombreKeyTyped
+
+    private void cajaNumPaginasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNumPaginasKeyTyped
+        // Validacion de la caja nombre (tercer caja) 
+        char validacion = evt.getKeyChar(); 
+        if(Character.isLetter(validacion)){
+            //getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_cajaNumPaginasKeyTyped
 
     /**
      * @param args the command line arguments
