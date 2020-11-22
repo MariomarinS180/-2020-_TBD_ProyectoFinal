@@ -1,12 +1,12 @@
 package conexionPostgreSQL;
 
+import Ventanas_ABCC.Ventana;
 import Ventanas_ABCC.VentanaLogin;
 import java.sql.*;
 public class Conexion {
-
     
     public static void main(String[] args) {
-        VentanaLogin.main(args);
+        Ventana.main(args);
         String url = "jdbc:postgresql://localhost:5432/BD_Biblioteca"; 
         String usuario = "mmarin"; 
         String contrasenia = "03082000s"; 
@@ -29,9 +29,7 @@ public class Conexion {
             st.close();
             conexion.close();
         } catch (Exception e) {
-            System.out.println("ERROR DE CONEXION " + e.getMessage());
-        }
-        
+            System.out.println("ERROR DE CONEXIÓN " + e.getMessage());
+        }   
     }
- 
 }

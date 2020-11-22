@@ -16,9 +16,15 @@ public class Ventana extends javax.swing.JFrame {
      */
     public Ventana() {
         initComponents();
-        this.setLocationRelativeTo(null); //CODIGO PARA ESTABLECER FIJA LA VENTANA
+        this.setLocationRelativeTo(null); //CODIGO PARA ESTABLECER FIJA LA VENTANA       
+        rellanarCombo();
     }
-
+    
+    public void rellanarCombo(){
+        for(int i = 1900; i<=2020; i++){
+            comboBoxAnioEdicion.addItem(String.valueOf(i));
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,23 +42,23 @@ public class Ventana extends javax.swing.JFrame {
         txtAutor = new javax.swing.JLabel();
         cajaAutor = new javax.swing.JTextField();
         txtGenero = new javax.swing.JLabel();
-        comboBoxGenero = new javax.swing.JComboBox<>();
         txtIDLibro = new javax.swing.JLabel();
         cajaPaisAutor = new javax.swing.JTextField();
         txtNumeroDePaginas = new javax.swing.JLabel();
         cajaNumPaginas = new javax.swing.JTextField();
         txtAnioEdicion = new javax.swing.JLabel();
-        cajaAnioEdicion = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JLabel();
         cajaPrecio = new javax.swing.JTextField();
         txtRegistrador = new javax.swing.JLabel();
         comboBoxRegistrador = new javax.swing.JComboBox<>();
         botonRegistrar = new javax.swing.JButton();
         botonModificar = new javax.swing.JButton();
-        botonEliminar1 = new javax.swing.JButton();
+        botonRestablecer = new javax.swing.JButton();
         txtPaisAutor1 = new javax.swing.JLabel();
         cajaIDLibro = new javax.swing.JTextField();
         botonEliminar2 = new javax.swing.JButton();
+        cajaGenero = new javax.swing.JTextField();
+        comboBoxAnioEdicion = new javax.swing.JComboBox<>();
         labelBanner = new javax.swing.JLabel();
         labelFondoGris = new javax.swing.JLabel();
 
@@ -111,14 +117,6 @@ public class Ventana extends javax.swing.JFrame {
         txtGenero.setText("Ingrese el Género");
         jPanel1.add(txtGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 110, 20));
 
-        comboBoxGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona un género", "Terror", "Fantasía", "Locura" }));
-        comboBoxGenero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxGeneroActionPerformed(evt);
-            }
-        });
-        jPanel1.add(comboBoxGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 170, -1));
-
         txtIDLibro.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
         txtIDLibro.setForeground(new java.awt.Color(255, 255, 255));
         txtIDLibro.setText("ID del Libro:");
@@ -152,13 +150,6 @@ public class Ventana extends javax.swing.JFrame {
         txtAnioEdicion.setForeground(new java.awt.Color(255, 255, 255));
         txtAnioEdicion.setText("Año de Edición");
         jPanel1.add(txtAnioEdicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, -1, -1));
-
-        cajaAnioEdicion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cajaAnioEdicionActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cajaAnioEdicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 150, 30));
 
         txtPrecio.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
         txtPrecio.setForeground(new java.awt.Color(255, 255, 255));
@@ -202,16 +193,16 @@ public class Ventana extends javax.swing.JFrame {
         });
         jPanel1.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 410, 120, 30));
 
-        botonEliminar1.setBackground(new java.awt.Color(51, 51, 255));
-        botonEliminar1.setFont(new java.awt.Font("Impact", 0, 14)); // NOI18N
-        botonEliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/restablecer.png"))); // NOI18N
-        botonEliminar1.setText("RESTABLECER COMPONENTES");
-        botonEliminar1.addActionListener(new java.awt.event.ActionListener() {
+        botonRestablecer.setBackground(new java.awt.Color(51, 51, 255));
+        botonRestablecer.setFont(new java.awt.Font("Impact", 0, 14)); // NOI18N
+        botonRestablecer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/restablecer.png"))); // NOI18N
+        botonRestablecer.setText("RESTABLECER COMPONENTES");
+        botonRestablecer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminar1ActionPerformed(evt);
+                botonRestablecerActionPerformed(evt);
             }
         });
-        jPanel1.add(botonEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 220, 30));
+        jPanel1.add(botonRestablecer, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 220, 30));
 
         txtPaisAutor1.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
         txtPaisAutor1.setForeground(new java.awt.Color(255, 255, 255));
@@ -223,7 +214,7 @@ public class Ventana extends javax.swing.JFrame {
                 cajaIDLibroActionPerformed(evt);
             }
         });
-        jPanel1.add(cajaIDLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, 130, 30));
+        jPanel1.add(cajaIDLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, 150, 30));
 
         botonEliminar2.setBackground(new java.awt.Color(204, 0, 0));
         botonEliminar2.setFont(new java.awt.Font("Impact", 0, 14)); // NOI18N
@@ -235,6 +226,10 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
         jPanel1.add(botonEliminar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, 120, 30));
+        jPanel1.add(cajaGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 160, 30));
+
+        comboBoxAnioEdicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el año..." }));
+        jPanel1.add(comboBoxAnioEdicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 160, 30));
 
         labelBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Centro de registro.jpg"))); // NOI18N
         jPanel1.add(labelBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -265,10 +260,6 @@ public class Ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cajaPrecioActionPerformed
 
-    private void cajaAnioEdicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaAnioEdicionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cajaAnioEdicionActionPerformed
-
     private void cajaNumPaginasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaNumPaginasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cajaNumPaginasActionPerformed
@@ -276,10 +267,6 @@ public class Ventana extends javax.swing.JFrame {
     private void cajaPaisAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaPaisAutorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cajaPaisAutorActionPerformed
-
-    private void comboBoxGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxGeneroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxGeneroActionPerformed
 
     private void cajaAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaAutorActionPerformed
         // TODO add your handling code here:
@@ -297,9 +284,26 @@ public class Ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cajaIDLibroActionPerformed
 
-    private void botonEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminar1ActionPerformed
+    private void botonRestablecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRestablecerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonEliminar1ActionPerformed
+        if(cajaAutor.getText().equals("") && cajaEditoral.getText().equals("") && cajaGenero.getText().equals("") &&
+                cajaIDLibro.getText().equals("") && cajaNombre.getText().equals("") && cajaNumPaginas.getText().equals("") &&
+                cajaPaisAutor.getText().equals("") && cajaPrecio.getText().equals("") && comboBoxRegistrador.getSelectedIndex() == 0
+                && comboBoxAnioEdicion.getSelectedIndex()==0){
+             JOptionPane.showMessageDialog(getParent(), "NO HAY NADA QUE REESTABLECER", "¡PSST!", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            cajaAutor.setText("");
+            cajaEditoral.setText("");
+            cajaGenero.setText("");
+            cajaIDLibro.setText("");
+            cajaNombre.setText("");
+            cajaNumPaginas.setText("");
+            cajaPaisAutor.setText("");
+            cajaPrecio.setText("");
+            comboBoxRegistrador.setSelectedIndex(0);
+            comboBoxAnioEdicion.setSelectedIndex(0);
+        }   
+    }//GEN-LAST:event_botonRestablecerActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         // TODO add your handling code here:
@@ -372,19 +376,19 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonEliminar1;
     private javax.swing.JButton botonEliminar2;
     private javax.swing.JButton botonModificar;
     private javax.swing.JButton botonRegistrar;
-    private javax.swing.JTextField cajaAnioEdicion;
+    private javax.swing.JButton botonRestablecer;
     private javax.swing.JTextField cajaAutor;
     private javax.swing.JTextField cajaEditoral;
+    private javax.swing.JTextField cajaGenero;
     private javax.swing.JTextField cajaIDLibro;
     private javax.swing.JTextField cajaNombre;
     private javax.swing.JTextField cajaNumPaginas;
     private javax.swing.JTextField cajaPaisAutor;
     private javax.swing.JTextField cajaPrecio;
-    private javax.swing.JComboBox<String> comboBoxGenero;
+    private javax.swing.JComboBox<String> comboBoxAnioEdicion;
     private javax.swing.JComboBox<String> comboBoxRegistrador;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelBanner;
