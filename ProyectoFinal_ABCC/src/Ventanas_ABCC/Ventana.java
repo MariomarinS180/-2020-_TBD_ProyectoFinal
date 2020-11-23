@@ -4,27 +4,66 @@
  * and open the template in the editor.
  */
 package Ventanas_ABCC;
+import conexionPostgreSQL.Conexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
+
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author marin
  */
 public class Ventana extends javax.swing.JFrame {
-
+   ResultSet rs;
     /**
      * Creates new form Ventana
      */
     public Ventana() {
-        initComponents();
+        initComponents();   
         this.setLocationRelativeTo(null); //CODIGO PARA ESTABLECER FIJA LA VENTANA       
+        tablaLibros();
         rellanarCombo();
+        //tablaLibros();
     }
-    
-    public void rellanarCombo(){
+    public void tablaLibros(){
+        DefaultTableModel modelo = (DefaultTableModel) tablaBDLibros.getModel(); 
+        modelo.setRowCount(0);
+        rs = conexionPostgreSQL.Conexion.Consulta("SELECT * FROM Libros");
+        
+        try {
+            while (rs.next()){
+              Vector v= new Vector();
+                v.add(rs.getInt(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));
+                v.add(rs.getInt(4));
+                v.add(rs.getInt(5));
+                v.add(rs.getString(6));
+                v.add(rs.getInt(7));
+                v.add(rs.getString(8));
+                v.add(rs.getString(9));
+                v.add(rs.getInt(10));
+                modelo.addRow(v);
+                tablaBDLibros.setModel(modelo);  
+            }
+        } catch (Exception e) {
+        }       
+    }
+     public void rellanarCombo(){
         for(int i = 1900; i<=2020; i++){
             comboBoxAnioEdicion.addItem(String.valueOf(i));
         }
     }
+   
+    
+    
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,6 +74,7 @@ public class Ventana extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        lbl_soloSeAdmitenNumeros = new javax.swing.JLabel();
         txtNombre = new javax.swing.JLabel();
         cajaNombre = new javax.swing.JTextField();
         txtEditorial = new javax.swing.JLabel();
@@ -58,6 +98,8 @@ public class Ventana extends javax.swing.JFrame {
         cajaIDLibro = new javax.swing.JTextField();
         botonEliminar2 = new javax.swing.JButton();
         cajaGenero = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaBDLibros = new javax.swing.JTable();
         comboBoxAnioEdicion = new javax.swing.JComboBox<>();
         labelBanner = new javax.swing.JLabel();
         labelFondoGris = new javax.swing.JLabel();
@@ -65,6 +107,10 @@ public class Ventana extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbl_soloSeAdmitenNumeros.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        lbl_soloSeAdmitenNumeros.setForeground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(lbl_soloSeAdmitenNumeros, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 160, 30));
 
         txtNombre.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(255, 255, 255));
@@ -168,7 +214,7 @@ public class Ventana extends javax.swing.JFrame {
         txtRegistrador.setText("¿Quién es el trabajador?");
         jPanel1.add(txtRegistrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, 20));
 
-        comboBoxRegistrador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un trabajador...", "Mario Marín Ramírez", "Felpe De Jesús M. Olague", "Miguel A. Bazan Garduño", "Osvaldo A. de la Torre Ortiz" }));
+        comboBoxRegistrador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un trabajador...", "Mario Marín Ramírez", "Felpe De Jesús M. Olague", "Miguel A. Bazan Garduño", "Osvaldo A. de la Torre Ortiz", "Marlon Monzon Canel" }));
         comboBoxRegistrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxRegistradorActionPerformed(evt);
@@ -228,6 +274,36 @@ public class Ventana extends javax.swing.JFrame {
         jPanel1.add(botonEliminar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, 120, 30));
         jPanel1.add(cajaGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 160, 30));
 
+        tablaBDLibros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Trabajador", "Nombre_Libro", "Editorial", "Genero", "Numero_Paginas", "Año de Edición", "Precio", "Autor_Libro", "País_Autor", "Codigo_Libro"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablaBDLibros);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 570, 100));
+
         comboBoxAnioEdicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el año..." }));
         jPanel1.add(comboBoxAnioEdicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 160, 30));
 
@@ -246,7 +322,7 @@ public class Ventana extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -391,8 +467,11 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxAnioEdicion;
     private javax.swing.JComboBox<String> comboBoxRegistrador;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelBanner;
     private javax.swing.JLabel labelFondoGris;
+    private javax.swing.JLabel lbl_soloSeAdmitenNumeros;
+    private javax.swing.JTable tablaBDLibros;
     private javax.swing.JLabel txtAnioEdicion;
     private javax.swing.JLabel txtAutor;
     private javax.swing.JLabel txtEditorial;
