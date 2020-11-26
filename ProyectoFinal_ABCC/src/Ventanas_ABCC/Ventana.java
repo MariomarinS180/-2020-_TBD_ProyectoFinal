@@ -33,6 +33,7 @@ public class Ventana extends javax.swing.JFrame {
         this.setLocationRelativeTo(null); //CODIGO PARA ESTABLECER FIJA LA VENTANA       
         tablaLibros();
         rellanarCombo();
+        cajaIDLibro.setEnabled(false);
     }
 
     public void tablaLibros() {
