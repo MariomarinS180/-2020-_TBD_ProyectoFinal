@@ -1,6 +1,7 @@
 package conexionPostgreSQL;
 import Ventanas_ABCC.*;
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.*;
 public class Conexion {
     private String r;
@@ -54,6 +55,28 @@ public class Conexion {
             "Error de Conexion",JOptionPane.ERROR_MESSAGE);
         }
         return null;
+    }
+    public static ArrayList<String> llenar_combo(){
+        Connection con = getConnection();
+        Statement res; 
+        //ps es sentencia
+        //rs es resultado
+       ArrayList<String> lista = new ArrayList<String>();
+       String sql = "SELECT * FROM Registrador"; 
+        try {
+            res = con.createStatement();
+            rs = res.executeQuery(sql); 
+            //System.out.print("Correcto");
+        } catch (Exception e) {
+            //System.out.print("No Correcto");
+        }
+        try {
+            while(rs.next()){
+                lista.add(rs.getString("Nombre"));
+            }
+        } catch (Exception e) {
+        }              
+       return lista;
     }
     public void cerrarConexion(){
         try {

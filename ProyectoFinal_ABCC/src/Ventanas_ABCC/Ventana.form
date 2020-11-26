@@ -264,14 +264,7 @@
         <Component class="javax.swing.JComboBox" name="comboBoxRegistrador">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="6">
-                <StringItem index="0" value="Seleccione un trabajador..."/>
-                <StringItem index="1" value="Mario Mar&#xed;n Ram&#xed;rez"/>
-                <StringItem index="2" value="Felpe De Jes&#xfa;s M. Olague"/>
-                <StringItem index="3" value="Miguel A. Bazan Gardu&#xf1;o"/>
-                <StringItem index="4" value="Osvaldo A. de la Torre Ortiz"/>
-                <StringItem index="5" value="Marlon Monzon Canel"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>

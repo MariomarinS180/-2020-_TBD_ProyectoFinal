@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.*;
@@ -34,13 +35,18 @@ public class Ventana extends javax.swing.JFrame {
         tablaLibros();
         rellanarCombo();
         cajaIDLibro.setEnabled(false);
+        //comboBoxRegistrador.removeAllItems();
+        ArrayList <String> lista = new ArrayList <String>();
+        lista = conexionPostgreSQL.Conexion.llenar_combo(); 
+        for (int i = 0; i <lista.size(); i++) {
+            comboBoxRegistrador.addItem(lista.get(i));
+        }
     }
 
     public void tablaLibros() {
         DefaultTableModel modelo = (DefaultTableModel) tablaBDLibros.getModel();
         modelo.setRowCount(0);
         rs = conexionPostgreSQL.Conexion.Consulta("SELECT * FROM Libros");
-
         try {
             while (rs.next()) {
                 Vector v = new Vector();
@@ -60,7 +66,6 @@ public class Ventana extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-
     public void rellanarCombo() {
         for (int i = 1900; i <= 2020; i++) {
             comboBoxAnioEdicion.addItem(String.valueOf(i));
@@ -217,7 +222,6 @@ public class Ventana extends javax.swing.JFrame {
         txtRegistrador.setText("¿Quién es el trabajador?");
         jPanel1.add(txtRegistrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, 20));
 
-        comboBoxRegistrador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un trabajador...", "Mario Marín Ramírez", "Felpe De Jesús M. Olague", "Miguel A. Bazan Garduño", "Osvaldo A. de la Torre Ortiz", "Marlon Monzon Canel" }));
         comboBoxRegistrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxRegistradorActionPerformed(evt);
