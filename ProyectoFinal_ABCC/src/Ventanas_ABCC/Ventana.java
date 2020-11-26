@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 package Ventanas_ABCC;
+
 import conexionPostgreSQL.Conexion;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,33 +16,33 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author marin
  */
 public class Ventana extends javax.swing.JFrame {
-   ResultSet rs;
+    ResultSet rs;
     /**
      * Creates new form Ventana
      */
     public Ventana() {
-        initComponents();   
+        initComponents();
         this.setLocationRelativeTo(null); //CODIGO PARA ESTABLECER FIJA LA VENTANA       
         tablaLibros();
         rellanarCombo();
-        //tablaLibros();
     }
-    public void tablaLibros(){
-        DefaultTableModel modelo = (DefaultTableModel) tablaBDLibros.getModel(); 
+
+    public void tablaLibros() {
+        DefaultTableModel modelo = (DefaultTableModel) tablaBDLibros.getModel();
         modelo.setRowCount(0);
         rs = conexionPostgreSQL.Conexion.Consulta("SELECT * FROM Libros");
-        
+
         try {
-            while (rs.next()){
-              Vector v= new Vector();
+            while (rs.next()) {
+                Vector v = new Vector();
                 v.add(rs.getInt(1));
                 v.add(rs.getString(2));
                 v.add(rs.getString(3));
@@ -50,20 +54,18 @@ public class Ventana extends javax.swing.JFrame {
                 v.add(rs.getString(9));
                 v.add(rs.getInt(10));
                 modelo.addRow(v);
-                tablaBDLibros.setModel(modelo);  
+                tablaBDLibros.setModel(modelo);
             }
         } catch (Exception e) {
-        }       
+        }
     }
-     public void rellanarCombo(){
-        for(int i = 1900; i<=2020; i++){
+
+    public void rellanarCombo() {
+        for (int i = 1900; i <= 2020; i++) {
             comboBoxAnioEdicion.addItem(String.valueOf(i));
         }
     }
-   
-    
-    
-   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -127,7 +129,7 @@ public class Ventana extends javax.swing.JFrame {
                 cajaNombreKeyTyped(evt);
             }
         });
-        jPanel1.add(cajaNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 160, -1));
+        jPanel1.add(cajaNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 160, -1));
 
         txtEditorial.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
         txtEditorial.setForeground(new java.awt.Color(255, 255, 255));
@@ -144,7 +146,7 @@ public class Ventana extends javax.swing.JFrame {
                 cajaEditoralKeyTyped(evt);
             }
         });
-        jPanel1.add(cajaEditoral, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 160, -1));
+        jPanel1.add(cajaEditoral, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 160, -1));
 
         txtAutor.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
         txtAutor.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,7 +158,7 @@ public class Ventana extends javax.swing.JFrame {
                 cajaAutorActionPerformed(evt);
             }
         });
-        jPanel1.add(cajaAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 151, 30));
+        jPanel1.add(cajaAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 151, 30));
 
         txtGenero.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
         txtGenero.setForeground(new java.awt.Color(255, 255, 255));
@@ -173,7 +175,7 @@ public class Ventana extends javax.swing.JFrame {
                 cajaPaisAutorActionPerformed(evt);
             }
         });
-        jPanel1.add(cajaPaisAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 130, 30));
+        jPanel1.add(cajaPaisAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 130, 30));
 
         txtNumeroDePaginas.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
         txtNumeroDePaginas.setForeground(new java.awt.Color(255, 255, 255));
@@ -207,7 +209,7 @@ public class Ventana extends javax.swing.JFrame {
                 cajaPrecioActionPerformed(evt);
             }
         });
-        jPanel1.add(cajaPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, 130, 30));
+        jPanel1.add(cajaPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 130, 30));
 
         txtRegistrador.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
         txtRegistrador.setForeground(new java.awt.Color(255, 255, 255));
@@ -226,6 +228,16 @@ public class Ventana extends javax.swing.JFrame {
         botonRegistrar.setFont(new java.awt.Font("Impact", 0, 14)); // NOI18N
         botonRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/registrar.png"))); // NOI18N
         botonRegistrar.setText("REGISTRAR");
+        botonRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonRegistrarMouseClicked(evt);
+            }
+        });
+        botonRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegistrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(botonRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, -1, 30));
 
         botonModificar.setBackground(new java.awt.Color(255, 255, 0));
@@ -260,7 +272,7 @@ public class Ventana extends javax.swing.JFrame {
                 cajaIDLibroActionPerformed(evt);
             }
         });
-        jPanel1.add(cajaIDLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, 150, 30));
+        jPanel1.add(cajaIDLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, 150, 30));
 
         botonEliminar2.setBackground(new java.awt.Color(204, 0, 0));
         botonEliminar2.setFont(new java.awt.Font("Impact", 0, 14)); // NOI18N
@@ -282,11 +294,11 @@ public class Ventana extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Trabajador", "Nombre_Libro", "Editorial", "Genero", "Numero_Paginas", "Año de Edición", "Precio", "Autor_Libro", "País_Autor", "Codigo_Libro"
+                "Código", "Nombre_Libro", "Editorial", "Páginas", "Año Edición", "Genero", "Precio", "Autor_Libro", "País_Autor", "ID Reg"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false, false
@@ -298,6 +310,11 @@ public class Ventana extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tablaBDLibros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaBDLibrosMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tablaBDLibros);
@@ -362,12 +379,12 @@ public class Ventana extends javax.swing.JFrame {
 
     private void botonRestablecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRestablecerActionPerformed
         // TODO add your handling code here:
-        if(cajaAutor.getText().equals("") && cajaEditoral.getText().equals("") && cajaGenero.getText().equals("") &&
-                cajaIDLibro.getText().equals("") && cajaNombre.getText().equals("") && cajaNumPaginas.getText().equals("") &&
-                cajaPaisAutor.getText().equals("") && cajaPrecio.getText().equals("") && comboBoxRegistrador.getSelectedIndex() == 0
-                && comboBoxAnioEdicion.getSelectedIndex()==0){
-             JOptionPane.showMessageDialog(getParent(), "NO HAY NADA QUE REESTABLECER", "¡PSST!", JOptionPane.INFORMATION_MESSAGE);
-        }else{
+        if (cajaAutor.getText().equals("") && cajaEditoral.getText().equals("") && cajaGenero.getText().equals("")
+                && cajaIDLibro.getText().equals("") && cajaNombre.getText().equals("") && cajaNumPaginas.getText().equals("")
+                && cajaPaisAutor.getText().equals("") && cajaPrecio.getText().equals("") && comboBoxRegistrador.getSelectedIndex() == 0
+                && comboBoxAnioEdicion.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(getParent(), "NO HAY NADA QUE REESTABLECER", "¡PSST!", JOptionPane.INFORMATION_MESSAGE);
+        } else {
             cajaAutor.setText("");
             cajaEditoral.setText("");
             cajaGenero.setText("");
@@ -378,7 +395,7 @@ public class Ventana extends javax.swing.JFrame {
             cajaPrecio.setText("");
             comboBoxRegistrador.setSelectedIndex(0);
             comboBoxAnioEdicion.setSelectedIndex(0);
-        }   
+        }
     }//GEN-LAST:event_botonRestablecerActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
@@ -391,17 +408,17 @@ public class Ventana extends javax.swing.JFrame {
 
     private void cajaEditoralKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaEditoralKeyTyped
         // Validacion de la caja editorial (primera caja) 
-        char validacion = evt.getKeyChar(); 
-        if(Character.isDigit(validacion)){
+        char validacion = evt.getKeyChar();
+        if (Character.isDigit(validacion)) {
             //getToolkit().beep();
             evt.consume();
         }
     }//GEN-LAST:event_cajaEditoralKeyTyped
 
     private void cajaNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNombreKeyTyped
-         // Validacion de la caja nombre (segunda caja) 
-        char validacion = evt.getKeyChar(); 
-        if(Character.isDigit(validacion)){
+        // Validacion de la caja nombre (segunda caja) 
+        char validacion = evt.getKeyChar();
+        if (Character.isDigit(validacion)) {
             //getToolkit().beep();
             evt.consume();
         }
@@ -409,12 +426,35 @@ public class Ventana extends javax.swing.JFrame {
 
     private void cajaNumPaginasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNumPaginasKeyTyped
         // Validacion de la caja nombre (tercer caja) 
-        char validacion = evt.getKeyChar(); 
-        if(Character.isLetter(validacion)){
+        char validacion = evt.getKeyChar();
+        if (Character.isLetter(validacion)) {
             //getToolkit().beep();
             evt.consume();
         }
     }//GEN-LAST:event_cajaNumPaginasKeyTyped
+
+    private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonRegistrarActionPerformed
+
+    private void botonRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarMouseClicked
+        
+    }//GEN-LAST:event_botonRegistrarMouseClicked
+
+    private void tablaBDLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaBDLibrosMouseClicked
+        // TODO add your handling code here:
+        int select = tablaBDLibros.rowAtPoint(evt.getPoint());
+            cajaIDLibro.setText(String.valueOf(tablaBDLibros.getValueAt(select, 0)));
+            cajaNombre.setText(String.valueOf(tablaBDLibros.getValueAt(select, 1)));
+            cajaEditoral.setText(String.valueOf(tablaBDLibros.getValueAt(select, 2)));
+            cajaNumPaginas.setText(String.valueOf(tablaBDLibros.getValueAt(select, 3)));
+            //comboBoxAnioEdicion.setSelectedIndex(String.valueOf(tablaBDLibros.getValueAt(select, 4)));
+            cajaGenero.setText(String.valueOf(tablaBDLibros.getValueAt(select, 5)));
+            cajaPrecio.setText(String.valueOf(tablaBDLibros.getValueAt(select, 6)));
+            cajaAutor.setText(String.valueOf(tablaBDLibros.getValueAt(select, 7)));
+            cajaPaisAutor.setText(String.valueOf(tablaBDLibros.getValueAt(select, 8)));
+            //comboBoxRegistrador.setSelectedIndex(Integer.parseInt((String) tablaBDLibros.getValueAt(select, select)));
+    }//GEN-LAST:event_tablaBDLibrosMouseClicked
 
     /**
      * @param args the command line arguments

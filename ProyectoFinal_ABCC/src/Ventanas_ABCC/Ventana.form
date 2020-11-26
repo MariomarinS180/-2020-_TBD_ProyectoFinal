@@ -77,7 +77,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="200" y="210" width="160" height="-1"/>
+              <AbsoluteConstraints x="20" y="210" width="160" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -104,7 +104,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="210" width="160" height="-1"/>
+              <AbsoluteConstraints x="200" y="210" width="160" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -130,7 +130,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="200" y="360" width="151" height="30"/>
+              <AbsoluteConstraints x="20" y="360" width="151" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -172,7 +172,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="30" y="360" width="130" height="30"/>
+              <AbsoluteConstraints x="210" y="360" width="130" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -241,7 +241,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="390" y="360" width="130" height="30"/>
+              <AbsoluteConstraints x="400" y="280" width="130" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -299,6 +299,10 @@
             </Property>
             <Property name="text" type="java.lang.String" value="REGISTRAR"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonRegistrarMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonRegistrarActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="50" y="410" width="-1" height="30"/>
@@ -371,7 +375,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="390" y="280" width="150" height="30"/>
+              <AbsoluteConstraints x="390" y="360" width="150" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -420,16 +424,16 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="10" rowCount="4">
-                    <Column editable="false" title="Trabajador" type="java.lang.String"/>
+                    <Column editable="false" title="C&#xf3;digo" type="java.lang.Integer"/>
                     <Column editable="false" title="Nombre_Libro" type="java.lang.String"/>
-                    <Column editable="false" title="Editorial" type="java.lang.Object"/>
-                    <Column editable="false" title="Genero" type="java.lang.Object"/>
-                    <Column editable="false" title="Numero_Paginas" type="java.lang.Integer"/>
-                    <Column editable="false" title="A&#xf1;o de Edici&#xf3;n" type="java.lang.Integer"/>
+                    <Column editable="false" title="Editorial" type="java.lang.String"/>
+                    <Column editable="false" title="P&#xe1;ginas" type="java.lang.Integer"/>
+                    <Column editable="false" title="A&#xf1;o Edici&#xf3;n" type="java.lang.Integer"/>
+                    <Column editable="false" title="Genero" type="java.lang.String"/>
                     <Column editable="false" title="Precio" type="java.lang.Integer"/>
                     <Column editable="false" title="Autor_Libro" type="java.lang.String"/>
                     <Column editable="false" title="Pa&#xed;s_Autor" type="java.lang.String"/>
-                    <Column editable="false" title="Codigo_Libro" type="java.lang.Integer"/>
+                    <Column editable="false" title="ID Reg" type="java.lang.Integer"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -490,6 +494,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaBDLibrosMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
