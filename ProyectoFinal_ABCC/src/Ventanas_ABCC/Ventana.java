@@ -222,6 +222,7 @@ public class Ventana extends javax.swing.JFrame {
         txtRegistrador.setText("¿Quién es el trabajador?");
         jPanel1.add(txtRegistrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, 20));
 
+        comboBoxRegistrador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción..." }));
         comboBoxRegistrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxRegistradorActionPerformed(evt);
@@ -299,11 +300,11 @@ public class Ventana extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nombre_Libro", "Editorial", "Páginas", "Año Edición", "Genero", "Precio", "Autor_Libro", "País_Autor", "ID Reg"
+                "Código", "Nombre_Libro", "Editorial", "Páginas", "Año Edición", "Genero", "Precio", "Autor_Libro", "País_Autor", "Trabajador"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false, false
@@ -400,6 +401,7 @@ public class Ventana extends javax.swing.JFrame {
             cajaPrecio.setText("");
             comboBoxRegistrador.setSelectedIndex(0);
             comboBoxAnioEdicion.setSelectedIndex(0);
+            comboBoxRegistrador.setEnabled(true);
         }
     }//GEN-LAST:event_botonRestablecerActionPerformed
 
@@ -453,12 +455,14 @@ public class Ventana extends javax.swing.JFrame {
             cajaNombre.setText(String.valueOf(tablaBDLibros.getValueAt(select, 1)));
             cajaEditoral.setText(String.valueOf(tablaBDLibros.getValueAt(select, 2)));
             cajaNumPaginas.setText(String.valueOf(tablaBDLibros.getValueAt(select, 3)));
-            //comboBoxAnioEdicion.setSelectedIndex(String.valueOf(tablaBDLibros.getValueAt(select, 4)));
+            comboBoxAnioEdicion.setSelectedItem(String.valueOf(tablaBDLibros.getValueAt(select, 4)));
             cajaGenero.setText(String.valueOf(tablaBDLibros.getValueAt(select, 5)));
             cajaPrecio.setText(String.valueOf(tablaBDLibros.getValueAt(select, 6)));
             cajaAutor.setText(String.valueOf(tablaBDLibros.getValueAt(select, 7)));
             cajaPaisAutor.setText(String.valueOf(tablaBDLibros.getValueAt(select, 8)));
-            //comboBoxRegistrador.setSelectedIndex(Integer.parseInt((String) tablaBDLibros.getValueAt(select, select)));
+            comboBoxRegistrador.setSelectedItem(String.valueOf(tablaBDLibros.getValueAt(select, 9)));
+            comboBoxRegistrador.setEnabled(false);
+       
     }//GEN-LAST:event_tablaBDLibrosMouseClicked
 
     /**
