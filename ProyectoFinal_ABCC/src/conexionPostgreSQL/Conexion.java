@@ -87,6 +87,6 @@ public class Conexion {
         }
     }
     public static void main(String args[]) {
-         Ventana.main(args);
+         VentanaInicio.main(args);
     }
 }

@@ -341,6 +341,11 @@ public class Ventana extends javax.swing.JFrame {
         botonRegresar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/home.png"))); // NOI18N
         botonRegresar.setText("REGRESAR");
+        botonRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonRegresarMouseClicked(evt);
+            }
+        });
         botonRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonRegresarActionPerformed(evt);
@@ -407,7 +412,7 @@ public class Ventana extends javax.swing.JFrame {
                 && cajaIDLibro.getText().equals("") && cajaNombre.getText().equals("") && cajaNumPaginas.getText().equals("")
                 && cajaPaisAutor.getText().equals("") && cajaPrecio.getText().equals("") && comboBoxRegistrador.getSelectedIndex() == 0
                 && comboBoxAnioEdicion.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(getParent(), "NO HAY NADA QUE REESTABLECR", "¡PSST!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(getParent(), "NO HAY NADA QUE REESTABLECER", "¡PSST!", JOptionPane.INFORMATION_MESSAGE);
         } else {
             cajaAutor.setText("");
             cajaEditoral.setText("");
@@ -484,10 +489,7 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaBDLibrosMouseClicked
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
-        // TODO add your handling code here:
-        VentanaInicio vi = new VentanaInicio(); 
-        vi.setVisible(true);
-        this.setVisible(false);
+      //Este metodo no fue de gran utilidad
     }//GEN-LAST:event_botonRegresarActionPerformed
 
     private void botonEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarMouseClicked
@@ -496,6 +498,12 @@ public class Ventana extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(getParent(), "PRIMERO DEBE SELECCIONAR UN REGISTRO", "¡PSST!", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_botonEliminarMouseClicked
+
+    private void botonRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegresarMouseClicked
+        VentanaInicio vi = new VentanaInicio(); 
+        vi.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_botonRegresarMouseClicked
 
     /**
      * @param args the command line arguments

@@ -29,36 +29,61 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void initComponents() {
 
         panel_princ_ventaIni = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        botonControlLibro = new javax.swing.JButton();
+        botonConsultas = new javax.swing.JButton();
+        botonReportes = new javax.swing.JButton();
+        botonGraficas = new javax.swing.JButton();
         label_menu_principal = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        botonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panel_princ_ventaIni.setBackground(new java.awt.Color(153, 153, 255));
 
-        jButton2.setText("CONTROL DE LIBROS");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botonControlLibro.setBackground(new java.awt.Color(102, 255, 204));
+        botonControlLibro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        botonControlLibro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/control de acceso_.png"))); // NOI18N
+        botonControlLibro.setText("CONTROL DE LIBROS");
+        botonControlLibro.setHideActionText(true);
+        botonControlLibro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonControlLibro.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        botonControlLibro.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        botonControlLibro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonControlLibroMouseClicked(evt);
+            }
+        });
+        botonControlLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botonControlLibroActionPerformed(evt);
             }
         });
 
-        jButton4.setText("REPORTES");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        botonConsultas.setBackground(new java.awt.Color(102, 255, 204));
+        botonConsultas.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        botonConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/control de consultas.png"))); // NOI18N
+        botonConsultas.setText("CONSULTAS");
+        botonConsultas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonConsultas.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        botonConsultas.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        botonConsultas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                botonConsultasActionPerformed(evt);
             }
         });
 
-        jButton5.setText("GRÁFICAS");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        botonReportes.setText("REPORTES");
+        botonReportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                botonReportesActionPerformed(evt);
+            }
+        });
+
+        botonGraficas.setText("GRÁFICAS");
+        botonGraficas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGraficasActionPerformed(evt);
             }
         });
 
@@ -66,31 +91,24 @@ public class VentanaInicio extends javax.swing.JFrame {
         label_menu_principal.setForeground(new java.awt.Color(255, 255, 255));
         label_menu_principal.setText("Menú Principal del Control de la Biblioteca");
 
-        jButton6.setText("SALIR");
+        botonSalir.setText("SALIR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addContainerGap(68, Short.MAX_VALUE)
+                .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
-        jButton1.setText("CONSULTAS");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout panel_princ_ventaIniLayout = new javax.swing.GroupLayout(panel_princ_ventaIni);
         panel_princ_ventaIni.setLayout(panel_princ_ventaIniLayout);
@@ -102,10 +120,10 @@ public class VentanaInicio extends javax.swing.JFrame {
                     .addComponent(label_menu_principal)
                     .addGroup(panel_princ_ventaIniLayout.createSequentialGroup()
                         .addGroup(panel_princ_ventaIniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(botonConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonGraficas, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonControlLibro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -118,13 +136,13 @@ public class VentanaInicio extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panel_princ_ventaIniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_princ_ventaIniLayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botonControlLibro)
+                        .addGap(15, 15, 15)
+                        .addComponent(botonConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonGraficas, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botonReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -144,25 +162,27 @@ public class VentanaInicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonControlLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonControlLibroActionPerformed
+
+    }//GEN-LAST:event_botonControlLibroActionPerformed
+
+    private void botonConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultasActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_botonConsultasActionPerformed
+
+    private void botonReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReportesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonReportesActionPerformed
+
+    private void botonGraficasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGraficasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGraficasActionPerformed
+
+    private void botonControlLibroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonControlLibroMouseClicked
         Ventana v = new Ventana(); 
         v.setVisible(true);
         this.setVisible(false);
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_botonControlLibroMouseClicked
 
     /**
      * @param args the command line arguments
@@ -200,11 +220,11 @@ public class VentanaInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton botonConsultas;
+    private javax.swing.JButton botonControlLibro;
+    private javax.swing.JButton botonGraficas;
+    private javax.swing.JButton botonReportes;
+    private javax.swing.JButton botonSalir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel label_menu_principal;
     private javax.swing.JPanel panel_princ_ventaIni;
