@@ -104,16 +104,18 @@ public class Ventana extends javax.swing.JFrame {
         botonRestablecer = new javax.swing.JButton();
         txtPaisAutor1 = new javax.swing.JLabel();
         cajaIDLibro = new javax.swing.JTextField();
-        botonEliminar2 = new javax.swing.JButton();
+        botonEliminar = new javax.swing.JButton();
         cajaGenero = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaBDLibros = new javax.swing.JTable();
         comboBoxAnioEdicion = new javax.swing.JComboBox<>();
+        botonRegresar = new javax.swing.JButton();
         labelBanner = new javax.swing.JLabel();
         labelFondoGris = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setToolTipText("");
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbl_soloSeAdmitenNumeros.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
@@ -173,7 +175,7 @@ public class Ventana extends javax.swing.JFrame {
 
         txtIDLibro.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
         txtIDLibro.setForeground(new java.awt.Color(255, 255, 255));
-        txtIDLibro.setText("ID del Libro:");
+        txtIDLibro.setText("Código del libro");
         jPanel1.add(txtIDLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, -1, -1));
 
         cajaPaisAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -280,16 +282,21 @@ public class Ventana extends javax.swing.JFrame {
         });
         jPanel1.add(cajaIDLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, 150, 30));
 
-        botonEliminar2.setBackground(new java.awt.Color(204, 0, 0));
-        botonEliminar2.setFont(new java.awt.Font("Impact", 0, 14)); // NOI18N
-        botonEliminar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/delete.png"))); // NOI18N
-        botonEliminar2.setText("ELIMINAR");
-        botonEliminar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminar2ActionPerformed(evt);
+        botonEliminar.setBackground(new java.awt.Color(204, 0, 0));
+        botonEliminar.setFont(new java.awt.Font("Impact", 0, 14)); // NOI18N
+        botonEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/delete.png"))); // NOI18N
+        botonEliminar.setText("ELIMINAR");
+        botonEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonEliminarMouseClicked(evt);
             }
         });
-        jPanel1.add(botonEliminar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, 120, 30));
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, 120, 30));
         jPanel1.add(cajaGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 160, 30));
 
         tablaBDLibros.setModel(new javax.swing.table.DefaultTableModel(
@@ -329,6 +336,17 @@ public class Ventana extends javax.swing.JFrame {
 
         comboBoxAnioEdicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el año..." }));
         jPanel1.add(comboBoxAnioEdicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 160, 30));
+
+        botonRegresar.setBackground(new java.awt.Color(255, 255, 255));
+        botonRegresar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/home.png"))); // NOI18N
+        botonRegresar.setText("REGRESAR");
+        botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegresarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 120, -1));
 
         labelBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Centro de registro.jpg"))); // NOI18N
         jPanel1.add(labelBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -409,9 +427,9 @@ public class Ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonModificarActionPerformed
 
-    private void botonEliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminar2ActionPerformed
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonEliminar2ActionPerformed
+    }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void cajaEditoralKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaEditoralKeyTyped
         // Validacion de la caja editorial (primera caja) 
@@ -461,8 +479,23 @@ public class Ventana extends javax.swing.JFrame {
             cajaAutor.setText(String.valueOf(tablaBDLibros.getValueAt(select, 7)));
             cajaPaisAutor.setText(String.valueOf(tablaBDLibros.getValueAt(select, 8)));
             comboBoxRegistrador.setSelectedItem(String.valueOf(tablaBDLibros.getValueAt(select, 9)));
-            comboBoxRegistrador.setEnabled(false);               
+            comboBoxRegistrador.setEnabled(false);
+               
     }//GEN-LAST:event_tablaBDLibrosMouseClicked
+
+    private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+        // TODO add your handling code here:
+        VentanaInicio vi = new VentanaInicio(); 
+        vi.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_botonRegresarActionPerformed
+
+    private void botonEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarMouseClicked
+        // TODO add your handling code here:
+        if (cajaIDLibro.getText().equals("")){
+            JOptionPane.showMessageDialog(getParent(), "PRIMERO DEBE SELECCIONAR UN REGISTRO", "¡PSST!", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_botonEliminarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -500,9 +533,10 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonEliminar2;
+    private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonModificar;
     private javax.swing.JButton botonRegistrar;
+    private javax.swing.JButton botonRegresar;
     private javax.swing.JButton botonRestablecer;
     private javax.swing.JTextField cajaAutor;
     private javax.swing.JTextField cajaEditoral;
