@@ -407,7 +407,7 @@ public class Ventana extends javax.swing.JFrame {
                 && cajaIDLibro.getText().equals("") && cajaNombre.getText().equals("") && cajaNumPaginas.getText().equals("")
                 && cajaPaisAutor.getText().equals("") && cajaPrecio.getText().equals("") && comboBoxRegistrador.getSelectedIndex() == 0
                 && comboBoxAnioEdicion.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(getParent(), "NO HAY NADA QUE REESTABLECER", "¡PSST!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(getParent(), "NO HAY NADA QUE REESTABLECR", "¡PSST!", JOptionPane.INFORMATION_MESSAGE);
         } else {
             cajaAutor.setText("");
             cajaEditoral.setText("");
