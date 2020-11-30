@@ -14,9 +14,9 @@ public class BibliotecaLibros {
     private int precio; 
     private String autor_Libro; 
     private String pais_Autor; 
-    private String registrador;
+    private int registrador;
     public BibliotecaLibros(){}
-    public BibliotecaLibros(int ID_Libro, String nombre, String editorial, int numero_de_Cajas, int anio_de_Edicion, String genero_libro, int precio, String autor_Libro, String pais_Autor, String registrador) {
+    public BibliotecaLibros(int ID_Libro, String nombre, String editorial, int numero_de_Cajas, int anio_de_Edicion, String genero_libro, int precio, String autor_Libro, String pais_Autor, int registrador) {
         this.ID_Libro = ID_Libro;
         this.nombre = nombre;
         this.editorial = editorial;
@@ -65,7 +65,7 @@ public class BibliotecaLibros {
         return pais_Autor;
     }
 
-    public String getRegistrador() {
+    public int getRegistrador() {
         return registrador;
     }
 
@@ -105,7 +105,7 @@ public class BibliotecaLibros {
         this.pais_Autor = pais_Autor;
     }
 
-    public void setRegistrador(String registrador) {
+    public void setRegistrador(int registrador) {
         this.registrador = registrador;
     }  
 }
