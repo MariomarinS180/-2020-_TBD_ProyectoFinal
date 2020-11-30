@@ -464,7 +464,15 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_cajaNumPaginasKeyTyped
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
-        // TODO add your handling code here:
+        if (cajaNombre.getText().equals("") || cajaEditoral.getText().equals("") 
+                || cajaNumPaginas.getText().equals("") || comboBoxAnioEdicion.getSelectedIndex() == 0 || cajaGenero.getText().equals("")
+                || cajaPrecio.getText().equals("") || cajaAutor.getText().equals("") || cajaPaisAutor.getText().equals("") 
+                || comboBoxRegistrador.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(getParent(), "VERIFIQUE QUE TODOS LOS DATOS ESTÉN LLENOS", "¡PSST!", JOptionPane.INFORMATION_MESSAGE);   
+        //FIN DEL IF DE LA VERIFICACION DE COMPONENTES VACIOS
+        }else{
+            
+        }
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void botonRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarMouseClicked
