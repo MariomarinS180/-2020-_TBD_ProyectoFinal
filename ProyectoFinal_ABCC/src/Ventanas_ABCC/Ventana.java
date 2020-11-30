@@ -46,7 +46,10 @@ public class Ventana extends javax.swing.JFrame {
     public void tablaLibros() {
         DefaultTableModel modelo = (DefaultTableModel) tablaBDLibros.getModel();
         modelo.setRowCount(0);
-        rs = conexionPostgreSQL.Conexion.Consulta("SELECT * FROM Libros");
+        rs = conexionPostgreSQL.Conexion.Consulta("SELECT L.codigo_libro, L.nombre_libro, L.editorial_libro , L.num_paginas, L.anio_edicion, L.genero, L.precio, L.autor_libro, L.pais_autor, R.nombre\n"
+                + "FROM libros L\n"
+                + "JOIN registrador R\n"
+                + "ON L.id_registrador = R.id_registrador");
         try {
             while (rs.next()) {
                 Vector v = new Vector();
@@ -59,7 +62,7 @@ public class Ventana extends javax.swing.JFrame {
                 v.add(rs.getInt(7));
                 v.add(rs.getString(8));
                 v.add(rs.getString(9));
-                v.add(rs.getInt(10));
+                v.add(rs.getString(10));
                 modelo.addRow(v);
                 tablaBDLibros.setModel(modelo);
             }
@@ -311,7 +314,7 @@ public class Ventana extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false, false

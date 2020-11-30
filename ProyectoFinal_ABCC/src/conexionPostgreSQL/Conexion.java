@@ -72,7 +72,7 @@ public class Conexion {
         }
         try {
             while(rs.next()){
-                lista.add(rs.getString("id_registrador"));
+                lista.add(rs.getString("nombre"));
             }
         } catch (Exception e) {
         }              
