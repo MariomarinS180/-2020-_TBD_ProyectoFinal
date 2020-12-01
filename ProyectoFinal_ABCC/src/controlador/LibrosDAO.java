@@ -12,9 +12,19 @@ import Ventanas_ABCC.Ventana;
  */
 public class LibrosDAO {
     public boolean agregarLibro(BibliotecaLibros bl){
-        String sql = "INSERT INTO libros VALUES('"+bl.getNombre()+"','"+bl.getEditorial()+"','"+bl.getNumero_de_Cajas()+"','"+bl.getAnio_de_Edicion()+"','"+bl.getGenero_libro()+"','"+bl.getPrecio()+"','"+bl.getAutor_Libro()+"','"+bl.getPais_Autor()+"','"+bl.getRegistrador()+"');";
-        boolean res = new Conexion().ejecutarInstruccion2(sql);
-        return res; 
+        String sql = "INSERT INTO libros VALUES(0,'"+bl.getNombre()+"','"+bl.getEditorial()+"','"+bl.getNumero_de_Cajas()+"','"+bl.getAnio_de_Edicion()+"','"+bl.getGenero_libro()+"','"+bl.getPrecio()+"','"+bl.getAutor_Libro()+"','"+bl.getPais_Autor()+"','"+bl.getRegistrador()+"');";
+        return new Conexion().ejecutarInstruccion(sql);   
+    }
+      
+    public boolean eliminarLibro(String codigoLibro) {
+		String sql = "DELETE FROM Libros WHERE codigo_libro = '"+codigoLibro+"'";
+		return new Conexion().ejecutarInstruccion(sql);
+	}
+    
+    public boolean modificarLibro(BibliotecaLibros b){
+        String sql = ""; 
+        return new Conexion().ejecutarInstruccion(sql); 
+ 
     }
     /*
     public boolean altaLibro(BibliotecaLibros b){

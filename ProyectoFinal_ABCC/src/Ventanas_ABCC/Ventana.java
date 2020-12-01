@@ -499,7 +499,7 @@ public class Ventana extends javax.swing.JFrame {
         try {
             //boolean res = new LibrosDAO().agregarLibro(new BibliotecaLibros(opcion, nombre, editorial, PROPERTIES, opcion, genero_libro, opcion, autor_Libro, pais_Autor, ERROR))
             //boolean res = new LibrosDAO().agregarLibro(new BibliotecaLibros(null, cajaNombre.getText(), cajaEditoral.getText(), PROPERTIES, opcion, cajaGenero.getText(), opcion, cajaAutor.getText(), cajaPaisAutor.getText(), comboBoxRegistrador.getSel));
-            boolean res = new LibrosDAO().agregarLibro(new BibliotecaLibros(cajaNombre.getText(), cajaEditoral.getText(), Integer.parseInt(cajaNumPaginas.getText()), comboBoxAnioEdicion.getSelectedIndex(), cajaGenero.getText(), Integer.parseInt(cajaPrecio.getText()), cajaAutor.getText(), cajaPaisAutor.getText(), comboBoxRegistrador.getSelectedIndex()));
+            boolean res = new LibrosDAO().agregarLibro(new BibliotecaLibros(null,cajaNombre.getText(), cajaEditoral.getText(), Integer.parseInt(cajaNumPaginas.getText()), comboBoxAnioEdicion.getSelectedIndex(), cajaGenero.getText(), Integer.parseInt(cajaPrecio.getText()), cajaAutor.getText(), cajaPaisAutor.getText(), comboBoxRegistrador.getSelectedIndex()));
             JOptionPane.showMessageDialog(getParent(), "SE REGISTRÓ CORRECTAMENTE", "¡ÉXITO!", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
              JOptionPane.showMessageDialog(getParent(), "LLENE LOS DATOS", "¡ÉXITO!", JOptionPane.INFORMATION_MESSAGE);
@@ -533,6 +533,12 @@ public class Ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (cajaIDLibro.getText().equals("")){
             JOptionPane.showMessageDialog(getParent(), "PRIMERO DEBE SELECCIONAR UN REGISTRO", "¡PSST!", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            try {
+                boolean res = new LibrosDAO().eliminarLibro(cajaIDLibro.getText()); 
+            } catch (Exception e) {
+            }
+            tablaLibros();
         }
     }//GEN-LAST:event_botonEliminarMouseClicked
 
