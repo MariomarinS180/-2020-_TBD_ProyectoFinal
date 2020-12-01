@@ -496,27 +496,16 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void botonRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarMouseClicked
-         if (cajaNombre.getText().equals("") || cajaEditoral.getText().equals("") 
-                || cajaNumPaginas.getText().equals("") || comboBoxAnioEdicion.getSelectedIndex() == 0 || cajaGenero.getText().equals("")
-                || cajaPrecio.getText().equals("") || cajaAutor.getText().equals("") || cajaPaisAutor.getText().equals("") 
-                || comboBoxRegistrador.getSelectedIndex() == 0){
-            JOptionPane.showMessageDialog(getParent(), "VERIFIQUE QUE TODOS LOS DATOS ESTÉN LLENOS", "¡PSST!", JOptionPane.INFORMATION_MESSAGE);   
-        //FIN DEL IF DE LA VERIFICACION DE COMPONENTES VACIOS
-        }else{
-           if(txtVerificacionLibro.getText().equals("LIBRO REGISTRADO")){
-               JOptionPane.showMessageDialog(getParent(), "ESE LIBRO YA ESTÁ EN LA BASE DE DATOS", "AVISO", JOptionPane.INFORMATION_MESSAGE);
-           }else{
-               int opcion = JOptionPane.showConfirmDialog(null, "¿DESEA REGISTRAR EL PACIENTE?", "AVISO", JOptionPane.WARNING_MESSAGE);
-               if(opcion == JOptionPane.YES_OPTION){
-                   try {
-                       //boolean res = new LibrosDAO().agregarLibro(new BibliotecaLibros(opcion, nombre, editorial, PROPERTIES, opcion, genero_libro, opcion, autor_Libro, pais_Autor, ERROR))
-                       
-                   } catch (Exception e) {
-                   }
-               }
-           }
-                
+        try {
+            //boolean res = new LibrosDAO().agregarLibro(new BibliotecaLibros(opcion, nombre, editorial, PROPERTIES, opcion, genero_libro, opcion, autor_Libro, pais_Autor, ERROR))
+            //boolean res = new LibrosDAO().agregarLibro(new BibliotecaLibros(null, cajaNombre.getText(), cajaEditoral.getText(), PROPERTIES, opcion, cajaGenero.getText(), opcion, cajaAutor.getText(), cajaPaisAutor.getText(), comboBoxRegistrador.getSel));
+            boolean res = new LibrosDAO().agregarLibro(new BibliotecaLibros(cajaNombre.getText(), cajaEditoral.getText(), Integer.parseInt(cajaNumPaginas.getText()), comboBoxAnioEdicion.getSelectedIndex(), cajaGenero.getText(), Integer.parseInt(cajaPrecio.getText()), cajaAutor.getText(), cajaPaisAutor.getText(), comboBoxRegistrador.getSelectedIndex()));
+            JOptionPane.showMessageDialog(getParent(), "SE REGISTRÓ CORRECTAMENTE", "¡ÉXITO!", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(getParent(), "LLENE LOS DATOS", "¡ÉXITO!", JOptionPane.INFORMATION_MESSAGE);
         }
+
+
     }//GEN-LAST:event_botonRegistrarMouseClicked
 
     private void tablaBDLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaBDLibrosMouseClicked
@@ -560,7 +549,7 @@ public class Ventana extends javax.swing.JFrame {
 
     private void cajaNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNombreKeyPressed
         // TODO add your handling code here:
-        //verificarLibroEnBD();
+        verificarLibroEnBD();
     }//GEN-LAST:event_cajaNombreKeyPressed
 
     /**

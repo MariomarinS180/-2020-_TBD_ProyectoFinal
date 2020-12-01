@@ -5,7 +5,6 @@ package modelo;
  * @author marin
  */
 public class BibliotecaLibros {
-    private int ID_Libro; 
     private String nombre; 
     private String editorial;
     private int numero_de_Cajas; 
@@ -16,8 +15,8 @@ public class BibliotecaLibros {
     private String pais_Autor; 
     private int registrador;
     public BibliotecaLibros(){}
-    public BibliotecaLibros(int ID_Libro, String nombre, String editorial, int numero_de_Cajas, int anio_de_Edicion, String genero_libro, int precio, String autor_Libro, String pais_Autor, int registrador) {
-        this.ID_Libro = ID_Libro;
+
+    public BibliotecaLibros(String nombre, String editorial, int numero_de_Cajas, int anio_de_Edicion, String genero_libro, int precio, String autor_Libro, String pais_Autor, int registrador) {
         this.nombre = nombre;
         this.editorial = editorial;
         this.numero_de_Cajas = numero_de_Cajas;
@@ -27,10 +26,6 @@ public class BibliotecaLibros {
         this.autor_Libro = autor_Libro;
         this.pais_Autor = pais_Autor;
         this.registrador = registrador;
-    }
-
-    public int getID_Libro() {
-        return ID_Libro;
     }
 
     public String getNombre() {
@@ -68,44 +63,6 @@ public class BibliotecaLibros {
     public int getRegistrador() {
         return registrador;
     }
-
-    public void setID_Libro(int ID_Libro) {
-        this.ID_Libro = ID_Libro;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setEditorial(String editorial) {
-        this.editorial = editorial;
-    }
-
-    public void setNumero_de_Cajas(int numero_de_Cajas) {
-        this.numero_de_Cajas = numero_de_Cajas;
-    }
-
-    public void setAnio_de_Edicion(int anio_de_Edicion) {
-        this.anio_de_Edicion = anio_de_Edicion;
-    }
-
-    public void setGenero_libro(String genero_libro) {
-        this.genero_libro = genero_libro;
-    }
-
-    public void setPrecio(int precio) {
-        this.precio = precio;
-    }
-
-    public void setAutor_Libro(String autor_Libro) {
-        this.autor_Libro = autor_Libro;
-    }
-
-    public void setPais_Autor(String pais_Autor) {
-        this.pais_Autor = pais_Autor;
-    }
-
-    public void setRegistrador(int registrador) {
-        this.registrador = registrador;
-    }  
+    
+    
 }

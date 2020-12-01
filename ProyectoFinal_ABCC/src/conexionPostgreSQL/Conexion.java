@@ -2,19 +2,22 @@ package conexionPostgreSQL;
 import Ventanas_ABCC.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 public class Conexion {
     private String r;
     static Connection con;
     private static PreparedStatement ps;
     private static ResultSet rs;
+    private Statement stm; 
     
     public static Connection getConnection(){
         String url = "jdbc:postgresql://localhost:5432/BD_Biblioteca";
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
-            JOptionPane.showMessageDialog(null, "No Se pudo Establecer la conexion" + e.getMessage(),"Error de Conexion",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No se pudo establecer la conexion" + e.getMessage(),"Error de Conexion",JOptionPane.ERROR_MESSAGE);
         }
         try {
             con = DriverManager.getConnection(url,"mmarin","03082000s");
@@ -22,7 +25,10 @@ public class Conexion {
         }
         return con;
     }
-    public boolean ejecutarInstruccion(String sql){
+   
+    
+    
+    public boolean ejecutarInstruccion2(String sql){
         try {
             ps = con.prepareStatement(sql);
             int r = ps.executeUpdate(sql);
@@ -31,6 +37,25 @@ public class Conexion {
             e.printStackTrace();
         }
         return false;
+    }
+
+    
+    public boolean ejecutarInstruccion(String sql){
+        boolean res = false;
+        try {
+            stm = con.createStatement(); 
+            stm.execute(sql); 
+            res = true;  
+        } catch (Exception ex) {
+           Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                con.close();
+            } catch (Exception ex) {
+             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);    
+            }
+        }
+        return res; 
     }
     
     public static ResultSet ejecutarConsultaDeRegistros(String sql){
@@ -72,7 +97,7 @@ public class Conexion {
         }
         try {
             while(rs.next()){
-                lista.add(rs.getString("nombre"));
+                lista.add(rs.getString("id_registrador"));
             }
         } catch (Exception e) {
         }              
@@ -89,4 +114,5 @@ public class Conexion {
     public static void main(String args[]) {
          VentanaInicio.main(args);
     }
+
 }
