@@ -10,7 +10,9 @@ import controlador.LibrosDAO;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -496,13 +498,26 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void botonRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarMouseClicked
+        Connection con;
+        CallableStatement cs;
         try {
-            //boolean res = new LibrosDAO().agregarLibro(new BibliotecaLibros(opcion, nombre, editorial, PROPERTIES, opcion, genero_libro, opcion, autor_Libro, pais_Autor, ERROR))
-            //boolean res = new LibrosDAO().agregarLibro(new BibliotecaLibros(null, cajaNombre.getText(), cajaEditoral.getText(), PROPERTIES, opcion, cajaGenero.getText(), opcion, cajaAutor.getText(), cajaPaisAutor.getText(), comboBoxRegistrador.getSel));
-            boolean res = new LibrosDAO().agregarLibro(new BibliotecaLibros(null,cajaNombre.getText(), cajaEditoral.getText(), Integer.parseInt(cajaNumPaginas.getText()), comboBoxAnioEdicion.getSelectedIndex(), cajaGenero.getText(), Integer.parseInt(cajaPrecio.getText()), cajaAutor.getText(), cajaPaisAutor.getText(), comboBoxRegistrador.getSelectedIndex()));
-            JOptionPane.showMessageDialog(getParent(), "SE REGISTRÓ CORRECTAMENTE", "¡ÉXITO!", JOptionPane.INFORMATION_MESSAGE);
+            Class.forName("org.postgresql.Driver");
+            con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BD_Biblioteca", "mmarin", "03082000s");
+            cs = con.prepareCall("select insertarRegistro(?,?,?,?,?,?,?,?,?)");
+            cs.setString(1, this.cajaNombre.getText());
+            cs.setString(2, this.cajaEditoral.getText());
+            cs.setInt(3, Integer.parseInt(this.cajaNumPaginas.getText()));
+            cs.setInt(4, this.comboBoxAnioEdicion.getSelectedIndex());
+            cs.setString(5, this.cajaGenero.getText());
+            cs.setInt(6, Integer.parseInt(this.cajaPrecio.getText()));
+            cs.setString(7, this.cajaAutor.getText());
+            cs.setString(8, this.cajaPaisAutor.getText());
+            cs.setInt(9, this.comboBoxRegistrador.getSelectedIndex());
+            if (cs.execute()) {
+                JOptionPane.showMessageDialog(null, "Libro Registrado Correctamente");
+            }
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(getParent(), "LLENE LOS DATOS", "¡ÉXITO!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
 

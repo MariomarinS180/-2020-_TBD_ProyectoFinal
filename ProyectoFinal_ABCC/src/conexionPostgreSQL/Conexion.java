@@ -25,20 +25,6 @@ public class Conexion {
         }
         return con;
     }
-   
-    
-    
-    public boolean ejecutarInstruccion2(String sql){
-        try {
-            ps = con.prepareStatement(sql);
-            int r = ps.executeUpdate(sql);
-            return r ==1 ? true : false;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
     
     public boolean ejecutarInstruccion(String sql){
         boolean res = false;
@@ -68,6 +54,7 @@ public class Conexion {
             return rs;
         }
     }
+    
     public static ResultSet Consulta(String consulta){
         Connection con = getConnection();
         Statement declara;
@@ -81,6 +68,8 @@ public class Conexion {
         }
         return null;
     }
+
+    
     public static ArrayList<String> llenar_combo(){
         Connection con = getConnection();
         Statement res; 
