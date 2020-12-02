@@ -134,6 +134,7 @@
             <Property name="text" type="java.lang.String" value="REPORTES"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonReportesMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonReportesActionPerformed"/>
           </Events>
         </Component>
@@ -183,6 +184,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="SALIR"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonSalirMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

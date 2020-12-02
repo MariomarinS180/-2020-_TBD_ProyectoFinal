@@ -498,6 +498,7 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void botonRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarMouseClicked
+
         Connection con;
         CallableStatement cs;
         try {
@@ -507,7 +508,7 @@ public class Ventana extends javax.swing.JFrame {
             cs.setString(1, this.cajaNombre.getText());
             cs.setString(2, this.cajaEditoral.getText());
             cs.setInt(3, Integer.parseInt(this.cajaNumPaginas.getText()));
-            cs.setInt(4, this.comboBoxAnioEdicion.getSelectedIndex());
+            cs.setInt(4, Integer.parseInt((String) this.comboBoxAnioEdicion.getSelectedItem()));
             cs.setString(5, this.cajaGenero.getText());
             cs.setInt(6, Integer.parseInt(this.cajaPrecio.getText()));
             cs.setString(7, this.cajaAutor.getText());
@@ -519,8 +520,6 @@ public class Ventana extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
-
     }//GEN-LAST:event_botonRegistrarMouseClicked
 
     private void tablaBDLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaBDLibrosMouseClicked

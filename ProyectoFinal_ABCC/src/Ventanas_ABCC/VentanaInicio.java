@@ -5,6 +5,14 @@
  */
 package Ventanas_ABCC;
 
+import conexionPostgreSQL.Conexion;
+import java.sql.Connection;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author marin
@@ -74,6 +82,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
 
         botonReportes.setText("REPORTES");
+        botonReportes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonReportesMouseClicked(evt);
+            }
+        });
         botonReportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonReportesActionPerformed(evt);
@@ -92,6 +105,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         label_menu_principal.setText("Menú Principal del Control de la Biblioteca");
 
         botonSalir.setText("SALIR");
+        botonSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonSalirMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -183,6 +201,26 @@ public class VentanaInicio extends javax.swing.JFrame {
         v.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonControlLibroMouseClicked
+
+    private void botonReportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonReportesMouseClicked
+            // TODO add your handling code here:
+        Conexion con = new Conexion();
+        Connection conexion = con.getConnection();
+        try {
+            String ruta= System.getProperty("user.dir")+"/src/reporte/report2.jasper";
+            JasperReport jr = (JasperReport)JRLoader.loadObjectFromFile(ruta);
+            JasperPrint pt = JasperFillManager.fillReport(ruta, null, conexion);
+            JasperViewer jv = new JasperViewer(pt,false);
+            jv.setVisible(true);
+        } catch (Exception e) {
+            System.out.println("Error"+e.getMessage());
+        }   
+    }//GEN-LAST:event_botonReportesMouseClicked
+
+    private void botonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_botonSalirMouseClicked
 
     /**
      * @param args the command line arguments
