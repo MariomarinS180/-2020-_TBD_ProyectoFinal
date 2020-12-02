@@ -46,6 +46,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         botonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         panel_princ_ventaIni.setBackground(new java.awt.Color(153, 153, 255));
 
