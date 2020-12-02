@@ -6,7 +6,9 @@
 package Ventanas_ABCC;
 
 import conexionPostgreSQL.Conexion;
+import java.net.URL;
 import java.sql.Connection;
+import javax.swing.ImageIcon;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -25,6 +27,15 @@ public class VentanaInicio extends javax.swing.JFrame {
     public VentanaInicio() {
         initComponents();
         this.setLocationRelativeTo(null);
+        iconoEnBD();
+    }
+    public void iconoEnBD(){
+        
+        URL url = getClass().getResource("/imagenes/icono_bd.png"); 
+        ImageIcon icono = new ImageIcon(url);  
+        setIconImage(icono.getImage());
+        
+        
     }
 
     /**
