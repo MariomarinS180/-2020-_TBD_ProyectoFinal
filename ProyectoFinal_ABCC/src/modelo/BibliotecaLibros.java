@@ -5,7 +5,7 @@ package modelo;
  * @author marin
  */
 public class BibliotecaLibros {
-    private int codigo_libro; 
+    private int codigo; 
     private String nombre; 
     private String editorial;
     private int numero_de_Cajas; 
@@ -17,8 +17,8 @@ public class BibliotecaLibros {
     private int registrador;
     public BibliotecaLibros(){}
 
-    public BibliotecaLibros(int codigo_libro, String nombre, String editorial, int numero_de_Cajas, int anio_de_Edicion, String genero_libro, int precio, String autor_Libro, String pais_Autor, int registrador) {
-        this.codigo_libro = codigo_libro;
+    public BibliotecaLibros(int codigo, String nombre, String editorial, int numero_de_Cajas, int anio_de_Edicion, String genero_libro, int precio, String autor_Libro, String pais_Autor, int registrador) {
+        this.codigo = codigo; 
         this.nombre = nombre;
         this.editorial = editorial;
         this.numero_de_Cajas = numero_de_Cajas;
@@ -30,8 +30,8 @@ public class BibliotecaLibros {
         this.registrador = registrador;
     }
 
-    public int getCodigo_libro() {
-        return codigo_libro;
+    public int getCodigo() {
+        return codigo;
     }
 
     public String getNombre() {

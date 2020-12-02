@@ -10,9 +10,10 @@ import Ventanas_ABCC.Ventana;
  *
  * @author marin
  */
-public class LibrosDAO {
+public class LibrosDAO{
+    
     public boolean agregarLibro(BibliotecaLibros bl){
-        String sql = "INSERT INTO libros VALUES(0,'"+bl.getNombre()+"','"+bl.getEditorial()+"','"+bl.getNumero_de_Cajas()+"','"+bl.getAnio_de_Edicion()+"','"+bl.getGenero_libro()+"','"+bl.getPrecio()+"','"+bl.getAutor_Libro()+"','"+bl.getPais_Autor()+"','"+bl.getRegistrador()+"');";
+        String sql = "INSERT INTO libros VALUES('"+bl.getCodigo()+"','"+bl.getNombre()+"','"+bl.getEditorial()+"',"+bl.getNumero_de_Cajas()+","+bl.getAnio_de_Edicion()+",'"+bl.getGenero_libro()+"',"+bl.getPrecio()+",'"+bl.getAutor_Libro()+"','"+bl.getPais_Autor()+"',"+bl.getRegistrador()+");";
         return new Conexion().ejecutarInstruccion(sql);   
     }
       
