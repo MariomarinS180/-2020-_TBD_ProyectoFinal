@@ -69,12 +69,9 @@ public class Conexion {
         return null;
     }
 
-    
     public static ArrayList<String> llenar_combo(){
         Connection con = getConnection();
         Statement res; 
-        //ps es sentencia
-        //rs es resultado
        ArrayList<String> lista = new ArrayList<String>();
        String sql = "SELECT * FROM Registrador"; 
         try {
@@ -86,7 +83,7 @@ public class Conexion {
         }
         try {
             while(rs.next()){
-                lista.add(rs.getString("id_registrador"));
+                lista.add(rs.getString("nombre"));
             }
         } catch (Exception e) {
         }              

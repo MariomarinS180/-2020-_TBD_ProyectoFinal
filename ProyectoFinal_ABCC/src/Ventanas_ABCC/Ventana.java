@@ -51,10 +51,7 @@ public class Ventana extends javax.swing.JFrame {
         verificarLibroEnBD();
         DefaultTableModel modelo = (DefaultTableModel) tablaBDLibros.getModel();
         modelo.setRowCount(0);
-        rs = conexionPostgreSQL.Conexion.Consulta("SELECT L.codigo_libro, L.nombre_libro, L.editorial_libro , L.num_paginas, L.anio_edicion, L.genero, L.precio, L.autor_libro, L.pais_autor, R.nombre\n"
-                + "FROM libros L\n"
-                + "JOIN registrador R\n"
-                + "ON L.id_registrador = R.id_registrador");
+        rs = conexionPostgreSQL.Conexion.Consulta("SELECT * FROM mostrarTablaRegistros");
         try {
             while (rs.next()) {
                 Vector v = new Vector();
@@ -521,6 +518,7 @@ public class Ventana extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
+        tablaLibros();
     }//GEN-LAST:event_botonRegistrarMouseClicked
 
     private void tablaBDLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaBDLibrosMouseClicked
