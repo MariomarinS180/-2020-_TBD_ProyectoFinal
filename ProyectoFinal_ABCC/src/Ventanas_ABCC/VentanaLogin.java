@@ -35,24 +35,20 @@ public class VentanaLogin extends javax.swing.JFrame {
         cajaContrasenia = new javax.swing.JPasswordField();
         botonIniciarSesion = new javax.swing.JButton();
         botonCancelar = new javax.swing.JButton();
-        labelFondo = new javax.swing.JLabel();
+        labelImgUsuario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setForeground(new java.awt.Color(204, 204, 255));
 
         txtUsuario.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         txtUsuario.setText("INGRESE EL USUARIO");
-        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 114, -1, -1));
-        jPanel1.add(cajaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 112, 143, -1));
 
         txtContrasenia.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         txtContrasenia.setText("INGRESE LA CONTRASEÑA");
-        jPanel1.add(txtContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 157, -1, -1));
-        jPanel1.add(cajaContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 155, 143, -1));
 
         botonIniciarSesion.setText("INICIAR SESIÓN");
-        jPanel1.add(botonIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 205, -1, -1));
 
         botonCancelar.setText("CANCELAR");
         botonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -60,8 +56,56 @@ public class VentanaLogin extends javax.swing.JFrame {
                 botonCancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 205, -1, -1));
-        jPanel1.add(labelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, -1, -1));
+
+        labelImgUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuario.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(botonIniciarSesion)
+                        .addGap(76, 76, 76)
+                        .addComponent(botonCancelar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(txtUsuario))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(txtContrasenia)))
+                        .addGap(61, 61, 61)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cajaUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                            .addComponent(cajaContrasenia))))
+                .addContainerGap(44, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(labelImgUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(175, 175, 175))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(labelImgUsuario)
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cajaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUsuario))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cajaContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtContrasenia))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonIniciarSesion)
+                    .addComponent(botonCancelar))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,7 +168,7 @@ public class VentanaLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField cajaContrasenia;
     private javax.swing.JTextField cajaUsuario;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel labelFondo;
+    private javax.swing.JLabel labelImgUsuario;
     private javax.swing.JLabel txtContrasenia;
     private javax.swing.JLabel txtUsuario;
     // End of variables declaration//GEN-END:variables
