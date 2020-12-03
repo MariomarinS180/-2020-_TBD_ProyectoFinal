@@ -501,7 +501,7 @@ public class Ventana extends javax.swing.JFrame {
             if (txtVerificacionLibro.getText().equals("LIBRO REGISTRADO")) {
                 JOptionPane.showMessageDialog(getParent(), "ESE LIBRO YA ESTÁ EN LA BASE DE DATOS", "AVISO", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                int opcion = JOptionPane.showConfirmDialog(null, "¿CONFIRMA EL REGISTRO DEL LIRBO?", "AVISO", JOptionPane.WARNING_MESSAGE);
+                int opcion = JOptionPane.showConfirmDialog(null, "¿CONFIRMA EL REGISTRO DEL LIRBO?", "AVISO", JOptionPane.INFORMATION_MESSAGE);
                 if (opcion == JOptionPane.YES_OPTION) {
                     try {
                         Class.forName("org.postgresql.Driver");
@@ -517,17 +517,22 @@ public class Ventana extends javax.swing.JFrame {
                         cs.setString(8, this.cajaPaisAutor.getText());
                         cs.setInt(9, this.comboBoxRegistrador.getSelectedIndex());
                         if (cs.execute()) {
-                            JOptionPane.showMessageDialog(null, "Libro Registrado Correctamente");
                             restablecerComponentes(cajaAutor, cajaEditoral, cajaGenero, cajaIDLibro, cajaNombre, cajaNumPaginas,
-                                     cajaPaisAutor, cajaPrecio, comboBoxRegistrador, comboBoxAnioEdicion);
+                                    cajaPaisAutor, cajaPrecio, comboBoxRegistrador, comboBoxAnioEdicion);
                         }
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());
                     }
+                    JOptionPane.showMessageDialog(getParent(), "LIBRO REGISTRADO CORRECTAMENTE", "¡BIEN HECHO!", JOptionPane.INFORMATION_MESSAGE);
+                } else if (opcion == JOptionPane.CANCEL_OPTION) {
+                    restablecerComponentes(cajaAutor, cajaEditoral, cajaGenero, cajaIDLibro, cajaNombre, cajaNumPaginas,
+                            cajaPaisAutor, cajaPrecio, comboBoxRegistrador, comboBoxAnioEdicion);
                 }
             }
         }
         tablaLibros();
+        
+        
     }//GEN-LAST:event_botonRegistrarMouseClicked
 
     private void tablaBDLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaBDLibrosMouseClicked
@@ -559,12 +564,16 @@ public class Ventana extends javax.swing.JFrame {
             if (opcion == JOptionPane.YES_OPTION) {
                 try {
                     boolean res = new LibrosDAO().eliminarLibro(cajaIDLibro.getText());
-                    JOptionPane.showMessageDialog(getParent(), "SE ELIMINÓ CORRECTAMENTE", "¡ÉXITO!", JOptionPane.INFORMATION_MESSAGE);
                 } catch (Exception e) {
                 }
                 tablaLibros();
                 restablecerComponentes(cajaAutor, cajaEditoral, cajaGenero, cajaIDLibro, cajaNombre, cajaNumPaginas,
-                         cajaPaisAutor, cajaPrecio, comboBoxRegistrador, comboBoxAnioEdicion);
+                        cajaPaisAutor, cajaPrecio, comboBoxRegistrador, comboBoxAnioEdicion);
+                comboBoxRegistrador.setEnabled(true);
+                JOptionPane.showMessageDialog(getParent(), "SE ELIMINÓ CORRECTAMENTE", "¡ÉXITO!", JOptionPane.INFORMATION_MESSAGE);
+            } else if (opcion == JOptionPane.CANCEL_OPTION) {
+                restablecerComponentes(cajaAutor, cajaEditoral, cajaGenero, cajaIDLibro, cajaNombre, cajaNumPaginas,
+                        cajaPaisAutor, cajaPrecio, comboBoxRegistrador, comboBoxAnioEdicion);
                 comboBoxRegistrador.setEnabled(true);
             }
         }
