@@ -276,6 +276,11 @@ public class Ventana extends javax.swing.JFrame {
         botonModificar.setFont(new java.awt.Font("Impact", 0, 14)); // NOI18N
         botonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/update.png"))); // NOI18N
         botonModificar.setText("MODIFICAR");
+        botonModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonModificarMouseClicked(evt);
+            }
+        });
         botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonModificarActionPerformed(evt);
@@ -382,6 +387,9 @@ public class Ventana extends javax.swing.JFrame {
         jPanel1.add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 120, -1));
 
         cajaNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaNombreKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 cajaNombreKeyTyped(evt);
             }
@@ -544,17 +552,21 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegresarActionPerformed
 
     private void botonEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarMouseClicked
-
-        if (cajaIDLibro.getText().equals("")){
-            JOptionPane.showMessageDialog(getParent(), "PRIMERO DEBE SELECCIONAR UN REGISTRO", "¡PSST!", JOptionPane.INFORMATION_MESSAGE);
-        }else{
-            try {
-                boolean res = new LibrosDAO().eliminarLibro(cajaIDLibro.getText()); 
-            } catch (Exception e) {
+        if (cajaIDLibro.getText().equals("")) {
+            JOptionPane.showMessageDialog(getParent(), "PRIMERO DEBE SELECCIONAR UN REGISTRO", "¡PSST!", JOptionPane.WARNING_MESSAGE);
+        } else {
+            int opcion = JOptionPane.showConfirmDialog(null, "¿DESEA ELIMINAR EL LIBRO?", "AVISO", JOptionPane.WARNING_MESSAGE);
+            if (opcion == JOptionPane.YES_OPTION) {
+                try {
+                    boolean res = new LibrosDAO().eliminarLibro(cajaIDLibro.getText());
+                    JOptionPane.showMessageDialog(getParent(), "SE ELIMINÓ CORRECTAMENTE", "¡ÉXITO!", JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception e) {
+                }
+                tablaLibros();
+                restablecerComponentes(cajaAutor, cajaEditoral, cajaGenero, cajaIDLibro, cajaNombre, cajaNumPaginas,
+                         cajaPaisAutor, cajaPrecio, comboBoxRegistrador, comboBoxAnioEdicion);
+                comboBoxRegistrador.setEnabled(true);
             }
-            tablaLibros();
-            restablecerComponentes(cajaAutor, cajaEditoral, cajaGenero, cajaIDLibro, cajaNombre, cajaNumPaginas
-            ,cajaPaisAutor, cajaPrecio, comboBoxRegistrador, comboBoxAnioEdicion);
         }
     }//GEN-LAST:event_botonEliminarMouseClicked
 
@@ -565,8 +577,42 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegresarMouseClicked
 
     private void cajaNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNombreKeyTyped
-        verificarLibroEnBD();
+        
     }//GEN-LAST:event_cajaNombreKeyTyped
+
+    private void cajaNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNombreKeyReleased
+        // TODO add your handling code here:
+        verificarLibroEnBD();
+    }//GEN-LAST:event_cajaNombreKeyReleased
+
+    private void botonModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonModificarMouseClicked
+        // TODO add your handling code here:
+        if (cajaIDLibro.getText().equals("")) {
+            JOptionPane.showMessageDialog(getParent(), "PRIMERO DEBE SELECCIONAR UN REGISTRO", "¡PSST!", JOptionPane.WARNING_MESSAGE);
+        } else {
+            if (cajaNombre.getText().equals("") || cajaEditoral.getText().equals("")
+                    || cajaNumPaginas.getText().equals("") || comboBoxAnioEdicion.getSelectedIndex() == 0 || cajaGenero.getText().equals("")
+                    || cajaPrecio.getText().equals("") || cajaAutor.getText().equals("") || cajaPaisAutor.getText().equals("")
+                    || comboBoxRegistrador.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(getParent(), "NO PUEDE IR UN ESPACIO VACÍO", "¡VAYA!", JOptionPane.ERROR_MESSAGE);
+            } else {
+                int opcion = JOptionPane.showConfirmDialog(null, "¿DESEA GUARDAR LOS CAMBIOS?", "AVISO", JOptionPane.WARNING_MESSAGE);
+                if (opcion == JOptionPane.YES_OPTION) {
+                    try {
+                        boolean res = new LibrosDAO().modificarLibro(new  BibliotecaLibros(Integer.parseInt(cajaIDLibro.getText()), cajaNombre.getText(), cajaEditoral.getText(), Integer.parseInt(cajaNumPaginas.getText()), Integer.parseInt((String) comboBoxAnioEdicion.getSelectedItem()), cajaGenero.getText(), Integer.parseInt(cajaPrecio.getText()), cajaAutor.getText(), cajaPaisAutor.getText(), comboBoxRegistrador.getSelectedIndex()));
+                        JOptionPane.showMessageDialog(getParent(), "SE GUARDARON CORRECTAMENTE", "¡ÉXITO!", JOptionPane.INFORMATION_MESSAGE);
+                    } catch (Exception e) {
+                    }
+
+                }
+                tablaLibros();
+                restablecerComponentes(cajaAutor, cajaEditoral, cajaGenero, cajaIDLibro, cajaNombre, cajaNumPaginas,
+                cajaPaisAutor, cajaPrecio, comboBoxRegistrador, comboBoxAnioEdicion);
+                comboBoxRegistrador.setEnabled(true);
+            }
+        }
+        
+    }//GEN-LAST:event_botonModificarMouseClicked
 
     /**
      * @param args the command line arguments
