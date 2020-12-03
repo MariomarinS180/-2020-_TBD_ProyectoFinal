@@ -28,32 +28,58 @@ public class VentanaLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        txtUsuario = new javax.swing.JLabel();
+        cajaUsuario = new javax.swing.JTextField();
+        txtContrasenia = new javax.swing.JLabel();
+        cajaContrasenia = new javax.swing.JPasswordField();
+        botonIniciarSesion = new javax.swing.JButton();
+        botonCancelar = new javax.swing.JButton();
+        labelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("AQUÍ ES EL CÓDIGO");
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtUsuario.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        txtUsuario.setText("INGRESE EL USUARIO");
+        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 114, -1, -1));
+        jPanel1.add(cajaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 112, 143, -1));
+
+        txtContrasenia.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        txtContrasenia.setText("INGRESE LA CONTRASEÑA");
+        jPanel1.add(txtContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 157, -1, -1));
+        jPanel1.add(cajaContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 155, 143, -1));
+
+        botonIniciarSesion.setText("INICIAR SESIÓN");
+        jPanel1.add(botonIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 205, -1, -1));
+
+        botonCancelar.setText("CANCELAR");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 205, -1, -1));
+        jPanel1.add(labelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(149, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -93,6 +119,13 @@ public class VentanaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton botonCancelar;
+    private javax.swing.JButton botonIniciarSesion;
+    private javax.swing.JPasswordField cajaContrasenia;
+    private javax.swing.JTextField cajaUsuario;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelFondo;
+    private javax.swing.JLabel txtContrasenia;
+    private javax.swing.JLabel txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
