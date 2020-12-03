@@ -10,6 +10,7 @@ import controlador.LibrosDAO;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -38,6 +39,7 @@ public class Ventana extends javax.swing.JFrame {
         this.setLocationRelativeTo(null); //CODIGO PARA ESTABLECER FIJA LA VENTANA       
         tablaLibros();
         rellanarCombo();
+        iconoEnBD();
         cajaIDLibro.setEnabled(false);
         //comboBoxRegistrador.removeAllItems();
         ArrayList <String> lista = new ArrayList <String>();
@@ -87,6 +89,22 @@ public class Ventana extends javax.swing.JFrame {
         }
         
     }
+    
+    public void iconoEnBD(){      
+        URL url = getClass().getResource("/imagenes/icono_bd.png"); 
+        ImageIcon icono = new ImageIcon(url);  
+        setIconImage(icono.getImage()); 
+    }
+    public void restablecerComponentes (JComponent... componentesGraficos){
+        for(JComponent c : componentesGraficos){
+            if(c instanceof JTextField){
+                ((JTextField) c).setText("");
+            }else if(c instanceof JComboBox){
+                ((JComboBox)c).setSelectedIndex(0);
+            }
+            
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -100,7 +118,6 @@ public class Ventana extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lbl_soloSeAdmitenNumeros = new javax.swing.JLabel();
         txtNombre = new javax.swing.JLabel();
-        cajaNombre = new javax.swing.JTextField();
         txtEditorial = new javax.swing.JLabel();
         cajaEditoral = new javax.swing.JTextField();
         txtAutor = new javax.swing.JLabel();
@@ -127,6 +144,7 @@ public class Ventana extends javax.swing.JFrame {
         tablaBDLibros = new javax.swing.JTable();
         comboBoxAnioEdicion = new javax.swing.JComboBox<>();
         botonRegresar = new javax.swing.JButton();
+        cajaNombre = new javax.swing.JTextField();
         labelBanner = new javax.swing.JLabel();
         labelFondoGris = new javax.swing.JLabel();
 
@@ -144,24 +162,6 @@ public class Ventana extends javax.swing.JFrame {
         txtNombre.setForeground(new java.awt.Color(255, 255, 255));
         txtNombre.setText("Ingrese el Nombre del Libro");
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
-
-        cajaNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cajaNombreActionPerformed(evt);
-            }
-        });
-        cajaNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cajaNombreKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cajaNombreKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                cajaNombreKeyTyped(evt);
-            }
-        });
-        jPanel1.add(cajaNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 160, -1));
 
         txtEditorial.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
         txtEditorial.setForeground(new java.awt.Color(255, 255, 255));
@@ -381,6 +381,13 @@ public class Ventana extends javax.swing.JFrame {
         });
         jPanel1.add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 120, -1));
 
+        cajaNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cajaNombreKeyTyped(evt);
+            }
+        });
+        jPanel1.add(cajaNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 170, 30));
+
         labelBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Centro de registro.jpg"))); // NOI18N
         jPanel1.add(labelBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -426,10 +433,6 @@ public class Ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cajaEditoralActionPerformed
 
-    private void cajaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cajaNombreActionPerformed
-
     private void cajaIDLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaIDLibroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cajaIDLibroActionPerformed
@@ -442,17 +445,9 @@ public class Ventana extends javax.swing.JFrame {
                 && comboBoxAnioEdicion.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(getParent(), "NO HAY NADA QUE REESTABLECER", "¡PSST!", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            cajaAutor.setText("");
-            cajaEditoral.setText("");
-            cajaGenero.setText("");
-            cajaIDLibro.setText("");
-            cajaNombre.setText("");
-            cajaNumPaginas.setText("");
-            cajaPaisAutor.setText("");
-            cajaPrecio.setText("");
-            comboBoxRegistrador.setSelectedIndex(0);
-            comboBoxAnioEdicion.setSelectedIndex(0);
             comboBoxRegistrador.setEnabled(true);
+            restablecerComponentes(cajaAutor, cajaEditoral, cajaGenero, cajaIDLibro, cajaNombre, cajaNumPaginas
+            ,cajaPaisAutor, cajaPrecio, comboBoxRegistrador, comboBoxAnioEdicion);
         }
     }//GEN-LAST:event_botonRestablecerActionPerformed
 
@@ -473,15 +468,6 @@ public class Ventana extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cajaEditoralKeyTyped
 
-    private void cajaNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNombreKeyTyped
-        // Validacion de la caja nombre (segunda caja) 
-        char validacion = evt.getKeyChar();
-        if (Character.isDigit(validacion)) {
-            //getToolkit().beep();
-            evt.consume();
-        }
-    }//GEN-LAST:event_cajaNombreKeyTyped
-
     private void cajaNumPaginasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNumPaginasKeyTyped
         // Validacion de la caja nombre (tercer caja) 
         char validacion = evt.getKeyChar();
@@ -496,27 +482,42 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void botonRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarMouseClicked
-
         Connection con;
         CallableStatement cs;
-        try {
-            Class.forName("org.postgresql.Driver");
-            con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BD_Biblioteca", "mmarin", "03082000s");
-            cs = con.prepareCall("select insertarRegistro(?,?,?,?,?,?,?,?,?)");
-            cs.setString(1, this.cajaNombre.getText());
-            cs.setString(2, this.cajaEditoral.getText());
-            cs.setInt(3, Integer.parseInt(this.cajaNumPaginas.getText()));
-            cs.setInt(4, Integer.parseInt((String) this.comboBoxAnioEdicion.getSelectedItem()));
-            cs.setString(5, this.cajaGenero.getText());
-            cs.setInt(6, Integer.parseInt(this.cajaPrecio.getText()));
-            cs.setString(7, this.cajaAutor.getText());
-            cs.setString(8, this.cajaPaisAutor.getText());
-            cs.setInt(9, this.comboBoxRegistrador.getSelectedIndex());
-            if (cs.execute()) {
-                JOptionPane.showMessageDialog(null, "Libro Registrado Correctamente");
+        if (cajaNombre.getText().equals("") || cajaEditoral.getText().equals("")
+                || cajaNumPaginas.getText().equals("") || comboBoxAnioEdicion.getSelectedIndex() == 0 || cajaGenero.getText().equals("")
+                || cajaPrecio.getText().equals("") || cajaAutor.getText().equals("") || cajaPaisAutor.getText().equals("")
+                || comboBoxRegistrador.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(getParent(), "VERIFIQUE QUE TODOS LOS DATOS ESTÉN LLENOS", "¡PSST!", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            if (txtVerificacionLibro.getText().equals("LIBRO REGISTRADO")) {
+                JOptionPane.showMessageDialog(getParent(), "ESE LIBRO YA ESTÁ EN LA BASE DE DATOS", "AVISO", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                int opcion = JOptionPane.showConfirmDialog(null, "¿CONFIRMA EL REGISTRO DEL LIRBO?", "AVISO", JOptionPane.WARNING_MESSAGE);
+                if (opcion == JOptionPane.YES_OPTION) {
+                    try {
+                        Class.forName("org.postgresql.Driver");
+                        con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BD_Biblioteca", "mmarin", "03082000s");
+                        cs = con.prepareCall("select insertarRegistro(?,?,?,?,?,?,?,?,?)");
+                        cs.setString(1, this.cajaNombre.getText());
+                        cs.setString(2, this.cajaEditoral.getText());
+                        cs.setInt(3, Integer.parseInt(this.cajaNumPaginas.getText()));
+                        cs.setInt(4, Integer.parseInt((String) this.comboBoxAnioEdicion.getSelectedItem()));
+                        cs.setString(5, this.cajaGenero.getText());
+                        cs.setInt(6, Integer.parseInt(this.cajaPrecio.getText()));
+                        cs.setString(7, this.cajaAutor.getText());
+                        cs.setString(8, this.cajaPaisAutor.getText());
+                        cs.setInt(9, this.comboBoxRegistrador.getSelectedIndex());
+                        if (cs.execute()) {
+                            JOptionPane.showMessageDialog(null, "Libro Registrado Correctamente");
+                            restablecerComponentes(cajaAutor, cajaEditoral, cajaGenero, cajaIDLibro, cajaNombre, cajaNumPaginas,
+                                     cajaPaisAutor, cajaPrecio, comboBoxRegistrador, comboBoxAnioEdicion);
+                        }
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                    }
+                }
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         tablaLibros();
     }//GEN-LAST:event_botonRegistrarMouseClicked
@@ -543,7 +544,7 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegresarActionPerformed
 
     private void botonEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarMouseClicked
-        // TODO add your handling code here:
+
         if (cajaIDLibro.getText().equals("")){
             JOptionPane.showMessageDialog(getParent(), "PRIMERO DEBE SELECCIONAR UN REGISTRO", "¡PSST!", JOptionPane.INFORMATION_MESSAGE);
         }else{
@@ -552,6 +553,8 @@ public class Ventana extends javax.swing.JFrame {
             } catch (Exception e) {
             }
             tablaLibros();
+            restablecerComponentes(cajaAutor, cajaEditoral, cajaGenero, cajaIDLibro, cajaNombre, cajaNumPaginas
+            ,cajaPaisAutor, cajaPrecio, comboBoxRegistrador, comboBoxAnioEdicion);
         }
     }//GEN-LAST:event_botonEliminarMouseClicked
 
@@ -561,15 +564,9 @@ public class Ventana extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_botonRegresarMouseClicked
 
-    private void cajaNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNombreKeyReleased
-                // TODO add your handling code here:
-              verificarLibroEnBD();
-    }//GEN-LAST:event_cajaNombreKeyReleased
-
-    private void cajaNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNombreKeyPressed
-        // TODO add your handling code here:
+    private void cajaNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNombreKeyTyped
         verificarLibroEnBD();
-    }//GEN-LAST:event_cajaNombreKeyPressed
+    }//GEN-LAST:event_cajaNombreKeyTyped
 
     /**
      * @param args the command line arguments
@@ -640,6 +637,5 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JLabel txtRegistrador;
     private javax.swing.JLabel txtVerificacionLibro;
     // End of variables declaration//GEN-END:variables
-
 
 }

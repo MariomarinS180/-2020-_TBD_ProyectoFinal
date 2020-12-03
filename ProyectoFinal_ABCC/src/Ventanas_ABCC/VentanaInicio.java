@@ -29,13 +29,10 @@ public class VentanaInicio extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         iconoEnBD();
     }
-    public void iconoEnBD(){
-        
+    public void iconoEnBD(){      
         URL url = getClass().getResource("/imagenes/icono_bd.png"); 
         ImageIcon icono = new ImageIcon(url);  
-        setIconImage(icono.getImage());
-        
-        
+        setIconImage(icono.getImage()); 
     }
 
     /**
