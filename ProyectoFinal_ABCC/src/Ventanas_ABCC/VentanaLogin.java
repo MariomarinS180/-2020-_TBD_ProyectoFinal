@@ -5,14 +5,24 @@
  */
 package Ventanas_ABCC;
 
+import controlador.InicioDeSesion;
+import controlador.LibrosDAO;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author marin
  */
 public class VentanaLogin extends javax.swing.JFrame {
+
+    private Connection con;
+    private ResultSet rs;
+    private PreparedStatement pst;
 
     /**
      * Creates new form VentanaLogin
@@ -22,12 +32,21 @@ public class VentanaLogin extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         iconoEnBD();
     }
-    public void iconoEnBD(){      
-        URL url = getClass().getResource("/imagenes/icono_bd.png"); 
-        ImageIcon icono = new ImageIcon(url);  
-        setIconImage(icono.getImage()); 
+
+    public void iconoEnBD() {
+        URL url = getClass().getResource("/imagenes/icono_bd.png");
+        ImageIcon icono = new ImageIcon(url);
+        setIconImage(icono.getImage());
     }
 
+    public void verificarUsuario() {
+        String validacion = InicioDeSesion.verificarSiExisteUnUsuario(cajaUsuario.getText());
+        if (validacion.equals("YA EXISTE ESE USUARIO")) {
+            txtVerificacionUsuario.setText("USUARIO REGISTRADO");
+        } else {
+            txtVerificacionUsuario.setText("USUARIO NO REGISTRADO");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,6 +65,8 @@ public class VentanaLogin extends javax.swing.JFrame {
         labelImgUsuario = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        botonRegistrarse = new javax.swing.JButton();
+        txtVerificacionUsuario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,10 +76,24 @@ public class VentanaLogin extends javax.swing.JFrame {
         txtUsuario.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         txtUsuario.setText("INGRESE EL USUARIO");
 
+        cajaUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cajaUsuarioKeyReleased(evt);
+            }
+        });
+
         txtContrasenia.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         txtContrasenia.setText("INGRESE LA CONTRASEÑA");
 
         botonIniciarSesion.setText("INICIAR SESIÓN");
+        botonIniciarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonIniciarSesionMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonIniciarSesionMouseEntered(evt);
+            }
+        });
 
         labelImgUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuario.png"))); // NOI18N
 
@@ -67,13 +102,29 @@ public class VentanaLogin extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/candado.png"))); // NOI18N
 
+        botonRegistrarse.setText("REGISTRARSE");
+        botonRegistrarse.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonRegistrarseMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
+                .addComponent(botonIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botonRegistrarse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(46, 46, 46))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelImgUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(180, 180, 180))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -87,32 +138,31 @@ public class VentanaLogin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cajaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cajaContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(46, 46, 46))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(botonIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(113, 113, 113))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelImgUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(175, 175, 175))))
+                            .addComponent(cajaContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtVerificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(9, 9, 9)
+                .addContainerGap()
                 .addComponent(labelImgUsuario)
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cajaUsuario)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(25, 25, 25)
+                .addGap(3, 3, 3)
+                .addComponent(txtVerificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cajaContrasenia, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtContrasenia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(botonIniciarSesion)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botonIniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonRegistrarse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -129,6 +179,57 @@ public class VentanaLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonIniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIniciarSesionMouseClicked
+        // TODO add your handling code here:.
+        String user = cajaUsuario.getText();
+        String password = cajaContrasenia.getText();
+        if (user.equals("") || password.equals("")) {
+            JOptionPane.showMessageDialog(getParent(), "DEBE INGRESAR LOS DATOS", "INICIO SESIÓN", JOptionPane.CLOSED_OPTION);
+        } else {
+            try {
+                con = conexionPostgreSQL.Conexion.getConnection();
+                pst = con.prepareStatement("SELECT * FROM usuarios WHERE usuario=? and contrasenia=?");
+                pst.setString(1, user);
+                pst.setString(2, password);
+                rs = pst.executeQuery();
+                if (rs.next()) {
+                    VentanaInicio vi = new VentanaInicio();
+                    vi.setVisible(true);
+                    setVisible(false);
+                }else{
+                   JOptionPane.showMessageDialog(getParent(), "DEBE REGISTRARSE", "FALLO AL INICIAR SESIÓN", JOptionPane.ERROR_MESSAGE); 
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(getParent(), "DEBE REGISTRARSE", "FALLO AL INICIAR SESIÓN", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_botonIniciarSesionMouseClicked
+
+    private void botonIniciarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIniciarSesionMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonIniciarSesionMouseEntered
+
+    private void botonRegistrarseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarseMouseClicked
+        if (cajaUsuario.getText().equals("") || cajaContrasenia.getText().equals("")) {
+            JOptionPane.showMessageDialog(getParent(), "DEBE INGRESAR LOS DATOS", "INICIO SESIÓN", JOptionPane.CLOSED_OPTION);
+        } else {
+            if (txtVerificacionUsuario.getText().equals("USUARIO REGISTRADO")) {
+                JOptionPane.showMessageDialog(getParent(), "ELIJA OTRO NOMBRE DE USUARIO", "NOMBRE DE USUARIO REGISTRADO", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                try {
+                    boolean res = new LibrosDAO().agregarUsuario(new InicioDeSesion(cajaUsuario.getText(), cajaContrasenia.getText()));
+                    JOptionPane.showMessageDialog(getParent(), "YA PUEDE ACCEDER", "REGISTRO EXITOSO", JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception e) {
+                }
+            }
+        }
+    }//GEN-LAST:event_botonRegistrarseMouseClicked
+
+    private void cajaUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaUsuarioKeyReleased
+        // TODO add your handling code here:
+        verificarUsuario();
+    }//GEN-LAST:event_cajaUsuarioKeyReleased
 
     /**
      * @param args the command line arguments
@@ -169,6 +270,7 @@ public class VentanaLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIniciarSesion;
+    private javax.swing.JButton botonRegistrarse;
     private javax.swing.JPasswordField cajaContrasenia;
     private javax.swing.JTextField cajaUsuario;
     private javax.swing.JLabel jLabel1;
@@ -177,5 +279,6 @@ public class VentanaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel labelImgUsuario;
     private javax.swing.JLabel txtContrasenia;
     private javax.swing.JLabel txtUsuario;
+    private javax.swing.JLabel txtVerificacionUsuario;
     // End of variables declaration//GEN-END:variables
 }

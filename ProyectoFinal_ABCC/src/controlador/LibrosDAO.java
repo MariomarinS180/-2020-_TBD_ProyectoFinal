@@ -19,6 +19,10 @@ public class LibrosDAO{
         String sql = "UPDATE Libros SET nombre_libro= '"+b.getNombre()+"', editorial_libro='"+b.getEditorial()+"', num_paginas="+b.getNumero_de_Cajas()+", anio_edicion="+b.getAnio_de_Edicion()+", genero='"+b.getGenero_libro()+"', precio="+b.getPrecio()+", autor_libro='"+b.getAutor_Libro()+"', pais_autor='"+b.getPais_Autor()+"' WHERE codigo_libro = "+b.getCodigo()+""; 
         return new Conexion().ejecutarInstruccion(sql); 
     }
+    public boolean agregarUsuario(InicioDeSesion i){
+        String sql = "INSERT INTO usuarios VALUES('"+i.getUsuario()+"', '"+i.getPassword()+"');";
+        return new Conexion().ejecutarInstruccion(sql); 
+    }
     /*
     public boolean altaLibro(BibliotecaLibros b){
         String nombre = b.getNombre(); 
@@ -66,5 +70,10 @@ public class LibrosDAO{
         }
         return validacion; 
     }
+    
+    
+    
+    
+    
 
 }

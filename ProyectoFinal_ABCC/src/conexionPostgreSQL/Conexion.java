@@ -98,7 +98,7 @@ public class Conexion {
         }
     }
     public static void main(String args[]) {
-         Ventana.main(args);
+         VentanaLogin.main(args);
     }
 
 }

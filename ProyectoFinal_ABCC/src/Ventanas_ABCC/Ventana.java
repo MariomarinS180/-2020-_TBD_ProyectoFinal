@@ -80,6 +80,11 @@ public class Ventana extends javax.swing.JFrame {
             comboBoxAnioEdicion.addItem(String.valueOf(i));
         }
     }
+    public void rellenarComboPaginas(){
+        for (int i = 49; i<=1500; i++){
+            
+        }
+    }
     public void verificarLibroEnBD(){
         String validacion = LibrosDAO.verificarSiExisteUnLibro(cajaNombre.getText());
         if(validacion.equals("YA EXISTE ESE LIBRO")){
@@ -116,7 +121,6 @@ public class Ventana extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lbl_soloSeAdmitenNumeros = new javax.swing.JLabel();
         txtNombre = new javax.swing.JLabel();
         txtEditorial = new javax.swing.JLabel();
         cajaEditoral = new javax.swing.JTextField();
@@ -153,10 +157,6 @@ public class Ventana extends javax.swing.JFrame {
 
         jPanel1.setToolTipText("");
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lbl_soloSeAdmitenNumeros.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        lbl_soloSeAdmitenNumeros.setForeground(new java.awt.Color(255, 51, 51));
-        jPanel1.add(lbl_soloSeAdmitenNumeros, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 160, 30));
 
         txtNombre.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(255, 255, 255));
@@ -220,6 +220,9 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
         cajaNumPaginas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cajaNumPaginasKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 cajaNumPaginasKeyTyped(evt);
             }
@@ -483,6 +486,12 @@ public class Ventana extends javax.swing.JFrame {
             //getToolkit().beep();
             evt.consume();
         }
+        /*
+        if(cajaNumPaginas.getText().length() <=50){
+            JOptionPane.showMessageDialog(getParent(), "NO PUEDE IR VALORES MENORES A 50");           
+        }
+        */
+        
     }//GEN-LAST:event_cajaNumPaginasKeyTyped
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
@@ -541,6 +550,7 @@ public class Ventana extends javax.swing.JFrame {
             cajaIDLibro.setText(String.valueOf(tablaBDLibros.getValueAt(select, 0)));
             cajaNombre.setText(String.valueOf(tablaBDLibros.getValueAt(select, 1)));
             cajaEditoral.setText(String.valueOf(tablaBDLibros.getValueAt(select, 2)));
+            //aqui va com
             cajaNumPaginas.setText(String.valueOf(tablaBDLibros.getValueAt(select, 3)));
             comboBoxAnioEdicion.setSelectedItem(String.valueOf(tablaBDLibros.getValueAt(select, 4)));
             cajaGenero.setText(String.valueOf(tablaBDLibros.getValueAt(select, 5)));
@@ -612,7 +622,6 @@ public class Ventana extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(getParent(), "SE GUARDARON CORRECTAMENTE", "¡ÉXITO!", JOptionPane.INFORMATION_MESSAGE);
                     } catch (Exception e) {
                     }
-
                 }
                 tablaLibros();
                 restablecerComponentes(cajaAutor, cajaEditoral, cajaGenero, cajaIDLibro, cajaNombre, cajaNumPaginas,
@@ -622,6 +631,11 @@ public class Ventana extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_botonModificarMouseClicked
+
+    private void cajaNumPaginasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cajaNumPaginasKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cajaNumPaginasKeyPressed
 
     /**
      * @param args the command line arguments
@@ -678,7 +692,6 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelBanner;
     private javax.swing.JLabel labelFondoGris;
-    private javax.swing.JLabel lbl_soloSeAdmitenNumeros;
     private javax.swing.JTable tablaBDLibros;
     private javax.swing.JLabel txtAnioEdicion;
     private javax.swing.JLabel txtAutor;

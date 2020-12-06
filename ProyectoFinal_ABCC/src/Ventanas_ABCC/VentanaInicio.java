@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 package Ventanas_ABCC;
-
 import conexionPostgreSQL.Conexion;
 import java.net.URL;
 import java.sql.Connection;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -52,6 +52,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         label_menu_principal = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         botonSalir = new javax.swing.JButton();
+        botonReporteTrabajador = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -90,7 +91,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         });
 
-        botonReportes.setText("REPORTES");
+        botonReportes.setText("REPORTE DE LA BD");
         botonReportes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonReportesMouseClicked(evt);
@@ -109,14 +110,28 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         });
 
-        label_menu_principal.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        label_menu_principal.setForeground(new java.awt.Color(255, 255, 255));
+        label_menu_principal.setBackground(new java.awt.Color(0, 0, 0));
+        label_menu_principal.setFont(new java.awt.Font("Bodoni MT", 2, 24)); // NOI18N
         label_menu_principal.setText("Menú Principal del Control de la Biblioteca");
 
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+
+        botonSalir.setBackground(new java.awt.Color(255, 0, 0));
+        botonSalir.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        botonSalir.setForeground(new java.awt.Color(255, 255, 255));
+        botonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrarSesion.png"))); // NOI18N
         botonSalir.setText("CERRAR SESIÓN");
+        botonSalir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonSalirMouseClicked(evt);
+            }
+        });
+
+        botonReporteTrabajador.setText("REPORTE TRABAJADORES");
+        botonReporteTrabajador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonReporteTrabajadorMouseClicked(evt);
             }
         });
 
@@ -124,17 +139,23 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(botonReporteTrabajador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(34, 34, 34)
+                .addComponent(botonReporteTrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout panel_princ_ventaIniLayout = new javax.swing.GroupLayout(panel_princ_ventaIni);
@@ -150,26 +171,26 @@ public class VentanaInicio extends javax.swing.JFrame {
                     .addComponent(botonControlLibro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_princ_ventaIniLayout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(panel_princ_ventaIniLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addComponent(label_menu_principal)
-                .addGap(24, 24, 24))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         panel_princ_ventaIniLayout.setVerticalGroup(
             panel_princ_ventaIniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_princ_ventaIniLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(label_menu_principal)
                 .addGap(18, 18, 18)
+                .addComponent(label_menu_principal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panel_princ_ventaIniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_princ_ventaIniLayout.createSequentialGroup()
                         .addComponent(botonControlLibro)
                         .addGap(15, 15, 15)
                         .addComponent(botonConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botonGraficas, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(13, 13, 13)
                         .addComponent(botonReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -228,9 +249,26 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_botonReportesMouseClicked
 
     private void botonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseClicked
-        // TODO add your handling code here:
-        System.exit(0);
+        VentanaLogin v = new VentanaLogin();
+        v.setVisible(true);
+        this.setVisible(false);
+        JOptionPane.showMessageDialog(getParent(), "SE CERRÓ LA SESIÓN CORRECTAMENTE", "ADIOS =(", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_botonSalirMouseClicked
+
+    private void botonReporteTrabajadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonReporteTrabajadorMouseClicked
+        // TODO add your handling code here:
+         Conexion con = new Conexion();
+        Connection conexion = con.getConnection();
+        try {
+            String ruta= System.getProperty("user.dir")+"/src/reporte/report3.jasper";
+            JasperReport jr = (JasperReport)JRLoader.loadObjectFromFile(ruta);
+            JasperPrint pt = JasperFillManager.fillReport(ruta, null, conexion);
+            JasperViewer jv = new JasperViewer(pt,false);
+            jv.setVisible(true);
+        } catch (Exception e) {
+            System.out.println("Error"+e.getMessage());
+        } 
+    }//GEN-LAST:event_botonReporteTrabajadorMouseClicked
 
     /**
      * @param args the command line arguments
@@ -271,6 +309,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JButton botonConsultas;
     private javax.swing.JButton botonControlLibro;
     private javax.swing.JButton botonGraficas;
+    private javax.swing.JButton botonReporteTrabajador;
     private javax.swing.JButton botonReportes;
     private javax.swing.JButton botonSalir;
     private javax.swing.JPanel jPanel1;
